@@ -1,367 +1,829 @@
-.quiz-question{
-  font-size:24px;
-  line-height:1.5;
-  font-weight:bold;
-  margin:20px 0;
-  padding:22px 15px;
-  border-radius:20px;
-  background:rgba(59,130,246,0.15);
-  border:2px solid rgba(96,165,250,0.35);
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>GameArena Kids Quiz</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
 
+body{
+  font-family: "Trebuchet MS", Arial, sans-serif;
+  min-height:100vh;
+  background:linear-gradient(135deg,#dbeafe,#fef3c7,#dcfce7);
+  color:#172554;
+  padding:20px;
+}
+
+.container{
+  width:100%;
+  max-width:650px;
+  margin:auto;
+}
+
+/* Header */
+.header{
+  text-align:center;
+  margin-bottom:20px;
+}
+
+.logo{
+  font-size:38px;
+  font-weight:900;
+  color:#2563eb;
+  text-shadow:2px 3px 0 #bfdbfe;
+}
+
+.subtitle{
+  margin-top:6px;
+  font-size:18px;
+  font-weight:bold;
+  color:#475569;
+}
+
+/* Score Card */
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  margin-bottom:15px;
+}
+
+.score-box,
+.question-box{
+  flex:1;
+  background:white;
+  border-radius:18px;
+  padding:12px;
+  text-align:center;
+  box-shadow:0 5px 15px rgba(15,23,42,.10);
+  font-weight:bold;
+}
+
+.score-number{
+  color:#f59e0b;
+  font-size:22px;
+}
+
+/* Progress */
+.progress-area{
+  margin-bottom:18px;
+}
+
+.progress-text{
+  display:flex;
+  justify-content:space-between;
+  font-weight:bold;
+  margin-bottom:7px;
+}
+
+.progress-bar{
+  width:100%;
+  height:12px;
+  background:#e2e8f0;
+  border-radius:20px;
+  overflow:hidden;
+}
+
+.progress-fill{
+  height:100%;
+  width:4%;
+  background:linear-gradient(90deg,#2563eb,#7c3aed);
+  border-radius:20px;
+  transition:.3s;
+}
+
+/* Quiz Card */
+.quiz-card{
+  background:white;
+  border-radius:28px;
+  padding:25px 20px;
+  box-shadow:0 10px 30px rgba(15,23,42,.13);
+}
+
+.subject{
+  display:inline-block;
+  background:#ede9fe;
+  color:#6d28d9;
+  padding:8px 15px;
+  border-radius:30px;
+  font-size:14px;
+  font-weight:bold;
+  margin-bottom:15px;
+}
+
+.question{
+  font-size:24px;
+  line-height:1.4;
+  font-weight:900;
+  margin-bottom:22px;
+}
+
+/* Options */
 .options{
   display:flex;
   flex-direction:column;
-  gap:12px;
+  gap:13px;
 }
 
 .option{
   width:100%;
-  min-height:58px;
-  padding:14px;
-  border:2px solid #3b82f6;
-  border-radius:16px;
-  background:rgba(255,255,255,0.08);
-  color:white;
+  min-height:60px;
+  border:3px solid #bfdbfe;
+  border-radius:18px;
+  background:#eff6ff;
+  color:#1e3a8a;
   font-size:18px;
   font-weight:bold;
   cursor:pointer;
-  text-align:center;
-}
-
-.option:active{
-  transform:scale(0.98);
+  padding:13px 15px;
+  transition:.2s;
 }
 
 .option:hover{
-  background:rgba(59,130,246,0.25);
+  transform:translateY(-2px);
+  background:#dbeafe;
+  border-color:#60a5fa;
 }
 
-.next-button{
+.option:active{
+  transform:scale(.98);
+}
+
+.option.correct{
+  background:#dcfce7;
+  border-color:#22c55e;
+  color:#166534;
+}
+
+.option.wrong{
+  background:#fee2e2;
+  border-color:#ef4444;
+  color:#991b1b;
+}
+
+.option:disabled{
+  cursor:not-allowed;
+}
+
+/* Result */
+.result{
+  min-height:30px;
+  text-align:center;
+  margin-top:18px;
+  font-size:18px;
+  font-weight:900;
+}
+
+/* Next */
+.next-btn{
+  display:none;
   width:100%;
   margin-top:18px;
-  height:58px;
-  border:none;
-  border-radius:17px;
-  background:linear-gradient(135deg,#2563eb,#3b82f6);
-  color:white;
-  font-size:20px;
-  font-weight:bold;
-  cursor:pointer;
-}<div class="quiz-question" id="question">
-  Loading Question...
-</div>
-
-<div class="options" id="options"></div>
-
-<div class="result" id="result"></div>
-
-<div class="score-box">
-  ⭐ Score: <span id="score">0</span>
-</div>
-
-<div class="question-number" id="questionNumber">
-  Question 1 of 25
-</div><style>
-
-.result{
-  min-height:35px;
-  margin-top:18px;
-  font-size:19px;
-  font-weight:bold;
-}
-
-.score-box{
-  margin-top:18px;
   padding:15px;
+  border:0;
   border-radius:18px;
-  background:rgba(250,204,21,0.12);
-  border:1px solid rgba(250,204,21,0.25);
-  color:#facc15;
-  font-size:22px;
+  background:#2563eb;
+  color:white;
+  font-size:19px;
+  font-weight:900;
+  cursor:pointer;
+  box-shadow:0 5px 0 #1d4ed8;
+}
+
+.next-btn:hover{
+  background:#1d4ed8;
+}
+
+.next-btn:active{
+  transform:translateY(3px);
+  box-shadow:0 2px 0 #1d4ed8;
+}
+
+/* Final Screen */
+.final-screen{
+  display:none;
+  text-align:center;
+  background:white;
+  border-radius:28px;
+  padding:35px 20px;
+  box-shadow:0 10px 30px rgba(15,23,42,.13);
+}
+
+.trophy{
+  font-size:70px;
+}
+
+.final-title{
+  font-size:30px;
+  margin:10px 0;
+  color:#2563eb;
+}
+
+.final-score{
+  font-size:25px;
+  font-weight:900;
+  color:#f59e0b;
+  margin:15px 0;
+}
+
+.final-message{
+  font-size:18px;
   font-weight:bold;
+  color:#475569;
+  margin-bottom:22px;
 }
 
-.question-number{
-  margin-top:15px;
-  font-size:17px;
-  color:#bfdbfe;
+.play-again{
+  border:0;
+  padding:15px 30px;
+  border-radius:18px;
+  background:#22c55e;
+  color:white;
+  font-size:19px;
+  font-weight:900;
+  cursor:pointer;
+  box-shadow:0 5px 0 #15803d;
 }
 
+.play-again:active{
+  transform:translateY(3px);
+  box-shadow:0 2px 0 #15803d;
+}
+
+/* Home */
+.home-btn{
+  display:block;
+  text-align:center;
+  margin-top:18px;
+  padding:13px;
+  border-radius:17px;
+  background:white;
+  color:#2563eb;
+  text-decoration:none;
+  font-weight:bold;
+  box-shadow:0 5px 15px rgba(15,23,42,.10);
+}
+
+/* Mobile */
+@media(max-width:500px){
+
+  body{
+    padding:12px;
+  }
+
+  .logo{
+    font-size:31px;
+  }
+
+  .subtitle{
+    font-size:15px;
+  }
+
+  .quiz-card{
+    padding:20px 15px;
+  }
+
+  .question{
+    font-size:21px;
+  }
+
+  .option{
+    font-size:17px;
+    min-height:56px;
+  }
+
+  .final-title{
+    font-size:26px;
+  }
+}
 </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="header">
+    <div class="logo">🎮 GameArena</div>
+    <div class="subtitle">Kids Quiz • Prep to Class 5</div>
+  </div>
+
+  <div class="topbar">
+
+    <div class="question-box">
+      Question
+      <div id="questionNumber">1 / 25</div>
+    </div>
+
+    <div class="score-box">
+      ⭐ Score
+      <div class="score-number" id="score">0</div>
+    </div>
+
+  </div>
+
+  <div class="progress-area">
+
+    <div class="progress-text">
+      <span>Quiz Progress</span>
+      <span id="progressPercent">4%</span>
+    </div>
+
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+  </div>
+
+
+  <!-- Quiz -->
+  <div class="quiz-card" id="quizCard">
+
+    <div class="subject" id="subject">
+      Pakistan Studies
+    </div>
+
+    <div class="question" id="question">
+      Question will appear here
+    </div>
+
+    <div class="options" id="options"></div>
+
+    <div class="result" id="result"></div>
+
+    <button class="next-btn" id="nextBtn" onclick="nextQuestion()">
+      Next Question ➡️
+    </button>
+
+  </div>
+
+
+  <!-- Final -->
+  <div class="final-screen" id="finalScreen">
+
+    <div class="trophy">🏆</div>
+
+    <div class="final-title">
+      Quiz Complete!
+    </div>
+
+    <div class="final-score" id="finalScore">
+      Your Score: 0 / 250
+    </div>
+
+    <div class="final-message" id="finalMessage">
+      Great Job!
+    </div>
+
+    <button class="play-again" onclick="restartQuiz()">
+      🔄 Play Again
+    </button>
+
+  </div>
+
+
+  <a href="index.html" class="home-btn">
+    🏠 Back to GameArena
+  </a>
 
 </div>
-</div><script>
 
-let currentQuestion = 0;
-let score = 0;
+
+<script>
+
+/* =========================
+   GAMEARENA QUIZ QUESTIONS
+   Total: 25
+   ========================= */
 
 const questions = [
 
-{
-q:"Pakistan کا capital کیا ہے؟",
-a:["Karachi","Lahore","Islamabad","Peshawar"],
-c:2
-},
+  {
+    subject:"Pakistan Studies",
+    q:"پاکستان کا دارالحکومت کون سا شہر ہے؟",
+    options:["کراچی","اسلام آباد","لاہور","پشاور"],
+    answer:1
+  },
 
-{
-q:"Pakistan کب independent ہوا؟",
-a:["14 August 1947","23 March 1940","6 September 1965","25 December 1876"],
-c:0
-},
+  {
+    subject:"Pakistan Studies",
+    q:"پاکستان کب آزاد ہوا؟",
+    options:["14 اگست 1947","23 مارچ 1940","14 اگست 1948","15 اگست 1947"],
+    answer:0
+  },
 
-{
-q:"Pakistan کا national language کون سی ہے؟",
-a:["Punjabi","Urdu","Sindhi","English"],
-c:1
-},
+  {
+    subject:"Pakistan Studies",
+    q:"پاکستان کے بانی کون ہیں؟",
+    options:["علامہ اقبال","قائداعظم محمد علی جناح","لیاقت علی خان","سر سید احمد خان"],
+    answer:1
+  },
 
-{
-q:"Pakistan کا national animal کون سا ہے؟",
-a:["Lion","Markhor","Tiger","Deer"],
-c:1
-},
+  {
+    subject:"Pakistan Studies",
+    q:"پاکستان کا قومی پھول کون سا ہے؟",
+    options:["گلاب","چنبیلی","نرگس","سورج مکھی"],
+    answer:1
+  },
 
-{
-q:"Pakistan کا national flower کون سا ہے؟",
-a:["Rose","Jasmine","Sunflower","Tulip"],
-c:1
-},
+  {
+    subject:"Pakistan Studies",
+    q:"پاکستان کا قومی جانور کون سا ہے؟",
+    options:["شیر","مارخور","ہرن","چیتا"],
+    answer:1
+  },
 
-{
-q:"قرآن مجید میں کتنے پارے ہیں؟",
-a:["20","25","30","40"],
-c:2
-},
+  {
+    subject:"Pakistan Studies",
+    q:"پاکستان کا قومی کھیل عام طور پر کس کھیل کو کہا جاتا ہے؟",
+    options:["کرکٹ","فٹبال","ہاکی","کبڈی"],
+    answer:2
+  },
 
-{
-q:"اسلام کے کتنے بنیادی ارکان ہیں؟",
-a:["3","4","5","6"],
-c:2
-},
+  {
+    subject:"Pakistan Studies",
+    q:"پاکستان کا قومی پرچم کس رنگ پر مشتمل ہے؟",
+    options:["سبز اور سفید","نیلا اور سفید","سرخ اور سفید","پیلا اور سبز"],
+    answer:0
+  },
 
-{
-q:"مسلمان دن میں کتنی نمازیں پڑھتے ہیں؟",
-a:["3","4","5","6"],
-c:2
-},
 
-{
-q:"اسلام کی پہلی مسجد کون سی ہے؟",
-a:["مسجد نبوی","مسجد الحرام","مسجد قباء","مسجد اقصیٰ"],
-c:2
-},
+  {
+    subject:"Islamiyat",
+    q:"اسلام کے کتنے بنیادی ارکان ہیں؟",
+    options:["3","4","5","6"],
+    answer:2
+  },
 
-{
-q:"روزے کس Islamic month میں رکھے جاتے ہیں؟",
-a:["Muharram","Ramadan","Shawwal","Rajab"],
-c:1
-},
+  {
+    subject:"Islamiyat",
+    q:"مسلمان دن میں کتنی فرض نمازیں ادا کرتے ہیں؟",
+    options:["3","4","5","6"],
+    answer:2
+  },
 
-{
-q:"اسلام کے آخری نبی کون ہیں؟",
-a:["حضرت آدمؑ","حضرت موسیٰؑ","حضرت عیسیٰؑ","حضرت محمد ﷺ"],
-c:3
-},
+  {
+    subject:"Islamiyat",
+    q:"اسلامی سال کا پہلا مہینہ کون سا ہے؟",
+    options:["رمضان","محرم","شوال","رجب"],
+    answer:1
+  },
 
-{
-q:"قرآن مجید کس زبان میں نازل ہوا؟",
-a:["Urdu","Arabic","Persian","English"],
-c:1
-},
+  {
+    subject:"Islamiyat",
+    q:"قرآن مجید کس زبان میں نازل ہوا؟",
+    options:["فارسی","اردو","عربی","ترکی"],
+    answer:2
+  },
 
-{
-q:"Urdu کا مشہور شاعر کون ہے؟",
-a:["Mirza Ghalib","William Shakespeare","Leo Tolstoy","Mark Twain"],
-c:0
-},
+  {
+    subject:"Islamiyat",
+    q:"رمضان المبارک میں مسلمان کون سی عبادت کرتے ہیں؟",
+    options:["روزہ","صرف حج","صرف قربانی","صرف صدقہ"],
+    answer:0
+  },
 
-{
-q:"علامہ اقبال کو کس لقب سے یاد کیا جاتا ہے؟",
-a:["شاعرِ مشرق","بابائے اردو","مصورِ پاکستان","قائدِ ادب"],
-c:0
-},
+  {
+    subject:"Islamiyat",
+    q:"اسلام کی آخری نبی کون ہیں؟",
+    options:["حضرت موسیٰؑ","حضرت عیسیٰؑ","حضرت ابراہیمؑ","حضرت محمد ﷺ"],
+    answer:3
+  },
 
-{
-q:"Mirza Ghalib کس زبان کے مشہور شاعر تھے؟",
-a:["Urdu","French","German","English"],
-c:0
-},
 
-{
-q:"Urdu میں 'کتاب' کیا ہے؟",
-a:["فعل","اسم","حرف","صفت"],
-c:1
-},
+  {
+    subject:"Social Studies",
+    q:"ہم جس جگہ رہتے ہیں اسے کیا کہتے ہیں؟",
+    options:["رہائش","سیارہ","سمندر","جنگل"],
+    answer:0
+  },
 
-{
-q:"'خوبصورت' کس قسم کا لفظ ہے؟",
-a:["اسم","فعل","صفت","حرف"],
-c:2
-},
+  {
+    subject:"Social Studies",
+    q:"نقشہ ہمیں کس چیز کے بارے میں معلومات دے سکتا ہے؟",
+    options:["مقامات","صرف کھانے","صرف کپڑے","صرف جانور"],
+    answer:0
+  },
 
-{
-q:"Allama Iqbal کی مشہور کتاب کون سی ہے؟",
-a:["Bang-e-Dra","Hamlet","Gitanjali","War and Peace"],
-c:0
-},
+  {
+    subject:"Social Studies",
+    q:"ٹریفک سگنل میں سرخ بتی کا مطلب کیا ہے؟",
+    options:["چلیں","رکیں","تیز چلیں","واپس جائیں"],
+    answer:1
+  },
 
-{
-q:"Pakistan کا national poet کون ہے؟",
-a:["Faiz Ahmed Faiz","Allama Iqbal","Mir Taqi Mir","Ghalib"],
-c:1
-},
+  {
+    subject:"Social Studies",
+    q:"درخت اور پودے ہمارے لیے کیا پیدا کرتے ہیں؟",
+    options:["آکسیجن","پلاسٹک","پٹرول","لوہا"],
+    answer:0
+  },
 
-{
-q:"Pakistan کا national sport عام طور پر کس کھیل کو کہا جاتا ہے؟",
-a:["Cricket","Hockey","Football","Tennis"],
-c:1
-},
+  {
+    subject:"Social Studies",
+    q:"اچھا شہری کیا کرتا ہے؟",
+    options:["قوانین کی پابندی","کچرا سڑک پر پھینکتا ہے","دوسروں کو تنگ کرتا ہے","ٹریفک قوانین توڑتا ہے"],
+    answer:0
+  },
 
-{
-q:"Pakistan کا سب سے بڑا صوبہ area کے لحاظ سے کون سا ہے؟",
-a:["Punjab","Sindh","Balochistan","Khyber Pakhtunkhwa"],
-c:2
-},
+  {
+    subject:"Social Studies",
+    q:"اسکول میں ہمیں کیا سیکھنے کا موقع ملتا ہے؟",
+    options:["تعلیم","صرف کھیل","صرف خریداری","صرف سفر"],
+    answer:0
+  },
 
-{
-q:"Pakistan کا سب سے زیادہ آبادی والا صوبہ کون سا ہے؟",
-a:["Sindh","Punjab","Balochistan","Khyber Pakhtunkhwa"],
-c:1
-},
 
-{
-q:"Minar-e-Pakistan کس city میں ہے؟",
-a:["Karachi","Lahore","Islamabad","Multan"],
-c:1
-},
+  {
+    subject:"General Knowledge",
+    q:"دنیا کا سب سے بڑا براعظم کون سا ہے؟",
+    options:["افریقہ","ایشیا","یورپ","آسٹریلیا"],
+    answer:1
+  },
 
-{
-q:"Quaid-e-Azam کا اصل نام کیا تھا؟",
-a:["Muhammad Ali Jinnah","Liaquat Ali Khan","Allama Muhammad Iqbal","Sir Syed Ahmad Khan"],
-c:0
-},
+  {
+    subject:"General Knowledge",
+    q:"سورج کس سمت سے طلوع ہوتا ہے؟",
+    options:["مغرب","شمال","مشرق","جنوب"],
+    answer:2
+  },
 
-{
-q:"Pakistan کا national bird کون سا ہے؟",
-a:["Chukar","Eagle","Peacock","Parrot"],
-c:0
-}
+  {
+    subject:"General Knowledge",
+    q:"ایک ہفتے میں کتنے دن ہوتے ہیں؟",
+    options:["5","6","7","8"],
+    answer:2
+  },
+
+  {
+    subject:"General Knowledge",
+    q:"پانی کا کیمیائی فارمولا کیا ہے؟",
+    options:["CO2","O2","H2O","NaCl"],
+    answer:2
+  },
+
+  {
+    subject:"General Knowledge",
+    q:"زمین کا قدرتی سیٹلائٹ کون سا ہے؟",
+    options:["سورج","چاند","مریخ","زہرہ"],
+    answer:1
+  },
+
+  {
+    subject:"General Knowledge",
+    q:"ایک سال میں عام طور پر کتنے مہینے ہوتے ہیں؟",
+    options:["10","11","12","13"],
+    answer:2
+  }
 
 ];
 
+
+let currentQuestion = 0;
+let score = 0;
+let answered = false;
+
+
+/* =========================
+   SHOW QUESTION
+   ========================= */
+
 function showQuestion(){
 
-  if(currentQuestion >= questions.length){
+  answered = false;
 
-    document.getElementById("question").textContent =
-      "🎉 Quiz Complete!";
+  const q = questions[currentQuestion];
 
-    document.getElementById("options").innerHTML = "";
+  document.getElementById("questionNumber").textContent =
+    (currentQuestion + 1) + " / " + questions.length;
 
-    document.getElementById("result").textContent =
-      "🏆 Final Score: " + score + " / 250";
+  document.getElementById("score").textContent = score;
 
-    document.getElementById("questionNumber").textContent =
-      "25 Questions Completed";
-
-    return;
-  }
-
-  let q = questions[currentQuestion];
+  document.getElementById("subject").textContent = q.subject;
 
   document.getElementById("question").textContent = q.q;
 
-  document.getElementById("questionNumber").textContent =
-    "Question " + (currentQuestion + 1) + " of 25";
-
   document.getElementById("result").textContent = "";
 
-  let options = document.getElementById("options");
+  document.getElementById("nextBtn").style.display = "none";
 
-  options.innerHTML = "";
 
-  q.a.forEach(function(option,index){
+  const progress =
+    ((currentQuestion + 1) / questions.length) * 100;
 
-    let button = document.createElement("button");
+  document.getElementById("progressFill").style.width =
+    progress + "%";
+
+  document.getElementById("progressPercent").textContent =
+    Math.round(progress) + "%";
+
+
+  const optionsContainer =
+    document.getElementById("options");
+
+  optionsContainer.innerHTML = "";
+
+
+  q.options.forEach(function(optionText,index){
+
+    const button = document.createElement("button");
 
     button.className = "option";
 
-    button.textContent = option;
+    button.textContent = optionText;
 
     button.onclick = function(){
-      checkAnswer(index);
+
+      checkAnswer(index,button);
+
     };
 
-    options.appendChild(button);
+    optionsContainer.appendChild(button);
 
   });
 
 }
 
-function checkAnswer(selected){
 
-  let q = questions[currentQuestion];
+/* =========================
+   CHECK ANSWER
+   ========================= */
 
-  let buttons =
+function checkAnswer(selected,clickedButton){
+
+  if(answered) return;
+
+  answered = true;
+
+  const q = questions[currentQuestion];
+
+  const buttons =
     document.querySelectorAll(".option");
 
+
   buttons.forEach(function(button){
+
     button.disabled = true;
+
   });
 
-  if(selected === q.c){
+
+  if(selected === q.answer){
 
     score += 10;
+
+    clickedButton.classList.add("correct");
 
     document.getElementById("score").textContent =
       score;
 
     document.getElementById("result").textContent =
-      "🎉 Correct! +10 ⭐";
+      "🎉 Excellent! Correct Answer! +10 ⭐";
 
     document.getElementById("result").style.color =
-      "#22c55e";
+      "#16a34a";
 
-  }else{
-
-    document.getElementById("result").textContent =
-      "❌ Wrong! Correct answer: " + q.a[q.c];
-
-    document.getElementById("result").style.color =
-      "#ef4444";
   }
 
-  setTimeout(function(){
+  else{
 
-    currentQuestion++;
+    clickedButton.classList.add("wrong");
 
-    showQuestion();
+    buttons[q.answer].classList.add("correct");
 
-  },1200);
+    document.getElementById("result").textContent =
+      "😊 Nice Try! Correct answer: " +
+      q.options[q.answer];
+
+    document.getElementById("result").style.color =
+      "#dc2626";
+
+  }
+
+
+  document.getElementById("nextBtn").style.display =
+    "block";
 
 }
 
+
+/* =========================
+   NEXT QUESTION
+   ========================= */
+
+function nextQuestion(){
+
+  currentQuestion++;
+
+  if(currentQuestion >= questions.length){
+
+    showFinalScreen();
+
+  }
+
+  else{
+
+    showQuestion();
+
+    window.scrollTo({
+      top:0,
+      behavior:"smooth"
+    });
+
+  }
+
+}
+
+
+/* =========================
+   FINAL SCREEN
+   ========================= */
+
+function showFinalScreen(){
+
+  document.getElementById("quizCard").style.display =
+    "none";
+
+  document.getElementById("finalScreen").style.display =
+    "block";
+
+  document.getElementById("finalScore").textContent =
+    "Your Score: " + score + " / 250";
+
+
+  let message = "";
+
+  if(score >= 230){
+
+    message = "🏆 Amazing! You are a Quiz Champion!";
+
+  }
+
+  else if(score >= 190){
+
+    message = "🌟 Excellent Job! Keep it up!";
+
+  }
+
+  else if(score >= 140){
+
+    message = "👏 Great Work! You are learning well!";
+
+  }
+
+  else if(score >= 100){
+
+    message = "😊 Good Try! Keep practicing!";
+
+  }
+
+  else{
+
+    message = "💪 Don't Give Up! Try Again!";
+
+  }
+
+
+  document.getElementById("finalMessage").textContent =
+    message;
+
+}
+
+
+/* =========================
+   RESTART
+   ========================= */
+
+function restartQuiz(){
+
+  currentQuestion = 0;
+
+  score = 0;
+
+  document.getElementById("finalScreen").style.display =
+    "none";
+
+  document.getElementById("quizCard").style.display =
+    "block";
+
+  showQuestion();
+
+}
+
+
+/* START QUIZ */
+
 showQuestion();
 
-</script><div style="margin-top:25px;">
-
-  <a
-    href="index.html"
-    style="
-      display:inline-block;
-      padding:14px 25px;
-      border-radius:16px;
-      background:#1d4ed8;
-      color:white;
-      text-decoration:none;
-      font-size:18px;
-      font-weight:bold;
-    ">
-    🏠 Back to GameArena
-  </a>
-
-</div>
+</script>
 
 </body>
 </html>
