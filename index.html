@@ -1,43 +1,145 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>GameArena</title>
-</head><style>
-body{
-font-family:Arial;
-text-align:center;
-padding:20px;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>GameArena - Free Online Games</title>
+
+<style>
+*{
+  box-sizing:border-box;
 }
-a{
-display:block;
-padding:15px;
-margin:10px;
-font-size:20px;
+
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:linear-gradient(135deg,#111827,#312e81,#581c87);
+  color:white;
+  text-align:center;
+  min-height:100vh;
+}
+
+.container{
+  width:100%;
+  max-width:600px;
+  margin:auto;
+  padding:30px 18px;
+}.logo{
+  font-size:42px;
+  font-weight:bold;
+  margin-top:20px;
+  text-shadow:0 4px 15px #000;
+}
+
+.welcome{
+  font-size:21px;
+  margin-bottom:30px;
+  color:#e0e7ff;
+}
+
+h2{
+  font-size:28px;
+  margin:25px 0 18px;
+}
+
+.game-card{
+  display:block;
+  text-decoration:none;
+  color:white;
+  background:rgba(255,255,255,0.12);
+  border:2px solid rgba(255,255,255,0.2);
+  border-radius:18px;
+  padding:22px 15px;
+  margin:16px 0;
+  font-size:24px;
+  font-weight:bold;
+}.game-card{
+  box-shadow:0 8px 20px rgba(0,0,0,0.3);
+  transition:0.2s;
+}
+
+.game-card:hover{
+  transform:scale(1.03);
+  background:rgba(255,255,255,0.2);
+}
+
+.leaderboard{
+  background:rgba(0,0,0,0.25);
+  border-radius:20px;
+  padding:20px;
+  margin-top:15px;
+}
+
+.player{
+  background:rgba(255,255,255,0.12);
+  border-radius:12px;
+  padding:15px;
+  margin:10px 0;
+  font-size:20px;
+  font-weight:bold;.footer{
+  margin-top:35px;
+  font-size:15px;
+  color:#c7d2fe;
 }
 </style>
+</head>
+
 <body>
 
-<h1>🎮 GameArena</h1>
-<p>Welcome to GameArena</p>
+<div class="container">
 
-<h2>Choose a Game</h2>
+  <div class="logo">🎮 GameArena</div>
 
-<a href="game.html">🎯 Lucky Number</a>
-<a href="Puzzle.html">🧩 Puzzle Game</a><a href="Quiz.html">🧠 Quiz Game</a>
+  <p class="welcome">
+    Welcome to GameArena!<br>
+    Play • Challenge • Have Fun
+  </p>
 
-<h2>🏆 Leaderboard</h2>
+  <h2>🎮 Choose Your Game</h2>
+}  <a class="game-card" href="game.html">
+    🎯 Lucky Number
+  </a>
 
-<p>🥇 1. Player — 100 Points</p>
-<p>🥈 2. Player — 80 Points</p>
-<p>🥉 3. Player — 60 Points</p>
-<p>4. Player — 40 Points</p>
-<p>5. Player — 20 Points</p>
+  <a class="game-card" href="Puzzle.html">
+    🧩 Puzzle Game
+  </a>
 
-</body>
-</html>
-🎮 GameArena
-Welcome to GameArena
-  
+  <a class="game-card" href="Quiz.html">
+    🧠 Quiz Game
+  </a>
+
+  <h2>🏆 Leaderboard</h2>
+
+  <div class="leaderboard">
+
+    <div class="player">
+      🥇 1. Player — 100 Points
+    </div>
+
+    <div class="player">
+      🥈 2. Player — 80 Points
+    </div>
+
+    <div class="player">
+      🥉 3. Player — 60 Points
+    </div>
+
+    <div class="player">
+      4. Player — 40 Points
+    </div>
+
+    <div class="player">
+      5. Player — 20 Points
+    </div>
+
+  </div>
+
+  <div class="footer">
+    🎮 GameArena © 2026
+  </div>
+
+</div>
 
 </body>
 </html>
