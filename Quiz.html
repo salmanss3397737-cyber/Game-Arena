@@ -1,12 +1,367 @@
-<h1>🧠 Quiz Game</h1>
-<p>Pakistan کا دارالحکومت کیا ہے؟</p>
-<button onclick="a(1)">Karachi</button>
-<button onclick="a(2)">Islamabad</button>
-<button onclick="a(3)">Lahore</button>
-<button onclick="a(4)">Quetta</button>
-<h2 id="r"></h2>
-<script>
-function a(n){
-document.getElementById("r").innerText=n==2?"🎉 Correct!":"❌ Try Again!";
+.quiz-question{
+  font-size:24px;
+  line-height:1.5;
+  font-weight:bold;
+  margin:20px 0;
+  padding:22px 15px;
+  border-radius:20px;
+  background:rgba(59,130,246,0.15);
+  border:2px solid rgba(96,165,250,0.35);
 }
-</script>
+
+.options{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.option{
+  width:100%;
+  min-height:58px;
+  padding:14px;
+  border:2px solid #3b82f6;
+  border-radius:16px;
+  background:rgba(255,255,255,0.08);
+  color:white;
+  font-size:18px;
+  font-weight:bold;
+  cursor:pointer;
+  text-align:center;
+}
+
+.option:active{
+  transform:scale(0.98);
+}
+
+.option:hover{
+  background:rgba(59,130,246,0.25);
+}
+
+.next-button{
+  width:100%;
+  margin-top:18px;
+  height:58px;
+  border:none;
+  border-radius:17px;
+  background:linear-gradient(135deg,#2563eb,#3b82f6);
+  color:white;
+  font-size:20px;
+  font-weight:bold;
+  cursor:pointer;
+}<div class="quiz-question" id="question">
+  Loading Question...
+</div>
+
+<div class="options" id="options"></div>
+
+<div class="result" id="result"></div>
+
+<div class="score-box">
+  ⭐ Score: <span id="score">0</span>
+</div>
+
+<div class="question-number" id="questionNumber">
+  Question 1 of 25
+</div><style>
+
+.result{
+  min-height:35px;
+  margin-top:18px;
+  font-size:19px;
+  font-weight:bold;
+}
+
+.score-box{
+  margin-top:18px;
+  padding:15px;
+  border-radius:18px;
+  background:rgba(250,204,21,0.12);
+  border:1px solid rgba(250,204,21,0.25);
+  color:#facc15;
+  font-size:22px;
+  font-weight:bold;
+}
+
+.question-number{
+  margin-top:15px;
+  font-size:17px;
+  color:#bfdbfe;
+}
+
+</style>
+
+</div>
+</div><script>
+
+let currentQuestion = 0;
+let score = 0;
+
+const questions = [
+
+{
+q:"Pakistan کا capital کیا ہے؟",
+a:["Karachi","Lahore","Islamabad","Peshawar"],
+c:2
+},
+
+{
+q:"Pakistan کب independent ہوا؟",
+a:["14 August 1947","23 March 1940","6 September 1965","25 December 1876"],
+c:0
+},
+
+{
+q:"Pakistan کا national language کون سی ہے؟",
+a:["Punjabi","Urdu","Sindhi","English"],
+c:1
+},
+
+{
+q:"Pakistan کا national animal کون سا ہے؟",
+a:["Lion","Markhor","Tiger","Deer"],
+c:1
+},
+
+{
+q:"Pakistan کا national flower کون سا ہے؟",
+a:["Rose","Jasmine","Sunflower","Tulip"],
+c:1
+},
+
+{
+q:"قرآن مجید میں کتنے پارے ہیں؟",
+a:["20","25","30","40"],
+c:2
+},
+
+{
+q:"اسلام کے کتنے بنیادی ارکان ہیں؟",
+a:["3","4","5","6"],
+c:2
+},
+
+{
+q:"مسلمان دن میں کتنی نمازیں پڑھتے ہیں؟",
+a:["3","4","5","6"],
+c:2
+},
+
+{
+q:"اسلام کی پہلی مسجد کون سی ہے؟",
+a:["مسجد نبوی","مسجد الحرام","مسجد قباء","مسجد اقصیٰ"],
+c:2
+},
+
+{
+q:"روزے کس Islamic month میں رکھے جاتے ہیں؟",
+a:["Muharram","Ramadan","Shawwal","Rajab"],
+c:1
+},
+
+{
+q:"اسلام کے آخری نبی کون ہیں؟",
+a:["حضرت آدمؑ","حضرت موسیٰؑ","حضرت عیسیٰؑ","حضرت محمد ﷺ"],
+c:3
+},
+
+{
+q:"قرآن مجید کس زبان میں نازل ہوا؟",
+a:["Urdu","Arabic","Persian","English"],
+c:1
+},
+
+{
+q:"Urdu کا مشہور شاعر کون ہے؟",
+a:["Mirza Ghalib","William Shakespeare","Leo Tolstoy","Mark Twain"],
+c:0
+},
+
+{
+q:"علامہ اقبال کو کس لقب سے یاد کیا جاتا ہے؟",
+a:["شاعرِ مشرق","بابائے اردو","مصورِ پاکستان","قائدِ ادب"],
+c:0
+},
+
+{
+q:"Mirza Ghalib کس زبان کے مشہور شاعر تھے؟",
+a:["Urdu","French","German","English"],
+c:0
+},
+
+{
+q:"Urdu میں 'کتاب' کیا ہے؟",
+a:["فعل","اسم","حرف","صفت"],
+c:1
+},
+
+{
+q:"'خوبصورت' کس قسم کا لفظ ہے؟",
+a:["اسم","فعل","صفت","حرف"],
+c:2
+},
+
+{
+q:"Allama Iqbal کی مشہور کتاب کون سی ہے؟",
+a:["Bang-e-Dra","Hamlet","Gitanjali","War and Peace"],
+c:0
+},
+
+{
+q:"Pakistan کا national poet کون ہے؟",
+a:["Faiz Ahmed Faiz","Allama Iqbal","Mir Taqi Mir","Ghalib"],
+c:1
+},
+
+{
+q:"Pakistan کا national sport عام طور پر کس کھیل کو کہا جاتا ہے؟",
+a:["Cricket","Hockey","Football","Tennis"],
+c:1
+},
+
+{
+q:"Pakistan کا سب سے بڑا صوبہ area کے لحاظ سے کون سا ہے؟",
+a:["Punjab","Sindh","Balochistan","Khyber Pakhtunkhwa"],
+c:2
+},
+
+{
+q:"Pakistan کا سب سے زیادہ آبادی والا صوبہ کون سا ہے؟",
+a:["Sindh","Punjab","Balochistan","Khyber Pakhtunkhwa"],
+c:1
+},
+
+{
+q:"Minar-e-Pakistan کس city میں ہے؟",
+a:["Karachi","Lahore","Islamabad","Multan"],
+c:1
+},
+
+{
+q:"Quaid-e-Azam کا اصل نام کیا تھا؟",
+a:["Muhammad Ali Jinnah","Liaquat Ali Khan","Allama Muhammad Iqbal","Sir Syed Ahmad Khan"],
+c:0
+},
+
+{
+q:"Pakistan کا national bird کون سا ہے؟",
+a:["Chukar","Eagle","Peacock","Parrot"],
+c:0
+}
+
+];
+
+function showQuestion(){
+
+  if(currentQuestion >= questions.length){
+
+    document.getElementById("question").textContent =
+      "🎉 Quiz Complete!";
+
+    document.getElementById("options").innerHTML = "";
+
+    document.getElementById("result").textContent =
+      "🏆 Final Score: " + score + " / 250";
+
+    document.getElementById("questionNumber").textContent =
+      "25 Questions Completed";
+
+    return;
+  }
+
+  let q = questions[currentQuestion];
+
+  document.getElementById("question").textContent = q.q;
+
+  document.getElementById("questionNumber").textContent =
+    "Question " + (currentQuestion + 1) + " of 25";
+
+  document.getElementById("result").textContent = "";
+
+  let options = document.getElementById("options");
+
+  options.innerHTML = "";
+
+  q.a.forEach(function(option,index){
+
+    let button = document.createElement("button");
+
+    button.className = "option";
+
+    button.textContent = option;
+
+    button.onclick = function(){
+      checkAnswer(index);
+    };
+
+    options.appendChild(button);
+
+  });
+
+}
+
+function checkAnswer(selected){
+
+  let q = questions[currentQuestion];
+
+  let buttons =
+    document.querySelectorAll(".option");
+
+  buttons.forEach(function(button){
+    button.disabled = true;
+  });
+
+  if(selected === q.c){
+
+    score += 10;
+
+    document.getElementById("score").textContent =
+      score;
+
+    document.getElementById("result").textContent =
+      "🎉 Correct! +10 ⭐";
+
+    document.getElementById("result").style.color =
+      "#22c55e";
+
+  }else{
+
+    document.getElementById("result").textContent =
+      "❌ Wrong! Correct answer: " + q.a[q.c];
+
+    document.getElementById("result").style.color =
+      "#ef4444";
+  }
+
+  setTimeout(function(){
+
+    currentQuestion++;
+
+    showQuestion();
+
+  },1200);
+
+}
+
+showQuestion();
+
+</script><div style="margin-top:25px;">
+
+  <a
+    href="index.html"
+    style="
+      display:inline-block;
+      padding:14px 25px;
+      border-radius:16px;
+      background:#1d4ed8;
+      color:white;
+      text-decoration:none;
+      font-size:18px;
+      font-weight:bold;
+    ">
+    🏠 Back to GameArena
+  </a>
+
+</div>
+
+</body>
+</html>
