@@ -1,1 +1,13 @@
 
+<h1>🎯 Lucky Number</h1>
+<p>1 سے 10 تک نمبر چنیں</p>
+<input id="g" type="number">
+<button onclick="p()">Play</button>
+<h2 id="r"></h2><script>
+function p(){
+let n=Math.floor(Math.random()*10)+1;
+let g=+document.getElementById("g").value;
+document.getElementById("r").innerText=g==n?"🎉 You Win!":"❌ Try Again! Number: "+n;
+}
+</script></body>
+</html>
