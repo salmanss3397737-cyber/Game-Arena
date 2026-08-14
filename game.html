@@ -1,13 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<h1>🎯 Lucky Number</h1>
-<p>1 سے 10 تک نمبر چنیں</p>
-<input id="g" type="number">
-<button onclick="p()">Play</button>
-<h2 id="r"></h2><script>
-function p(){
-let n=Math.floor(Math.random()*10)+1;
-let g=+document.getElementById("g").value;
-document.getElementById("r").innerText=g==n?"🎉 You Win!":"❌ Try Again! Number: "+n;
+<title>Lucky Number - GameArena</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
-</script></body>
+
+body{
+  font-family:Arial,sans-serif;
+  min-height:100vh;
+  color:white;
+  text-align:center;
+  background:
+    radial-gradient(circle at top,#4c1d95,#17102f 45%,#05030d);
+}
+
+.container{
+  width:100%;
+  max-width:600px;
+  margin:auto;
+  padding:25px 18px;
+}
+
+.logo{
+  font-size:36px;
+  font-weight:bold;
+  margin-bottom:8px;
+  text-shadow:0 0 18px #8b5cf6;
+}
+
+.subtitle{
+  color:#d8b4fe;
+  font-size:17px;
+  margin-bottom:25px;
+}
+.game-box{
+  background:rgba(255,255,255,0.10);
+  border:1px solid rgba(255,255,255,0.18);
+  border-radius:24px;
+  padding:25px 18px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.35);
+}
+
+.game-icon{
+  font-size:55px;
+  margin-bottom:12px;
+}
+
+h1{
+  font-size:30px;
+  margin-bottom:10px;
+}
+
+.instruction{
+  font-size:18px;
+  color:#ddd6fe;
+  margin-bottom:20px;
+}
+button:active{
+  transform:scale(0.97);
+}
+
+.score{
+  margin-top:18px;
+  padding:14px;
+  border-radius:14px;
+  background:rgba(250,204,21,0.12);
+  color:#facc15;
+  font-size:21px;
+  font-weight:bold;
+}
+
+.message{
+  margin-top:15px;
+  min-height:28px;
+  font-size:18px;
+  font-weight:bold;
+}
+
+.home{
+  display:inline-block;
+  margin-top:20px;
+  padding:12px 22px;
+  border-radius:14px;
+  background:#312e81;
+  color:white;
+  text-decoration:none;
+  font-size:17px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="logo">🎮 GameArena</div>
+  <div class="subtitle">Play • Challenge • Win</div>
+
+  <div class="game-box">
+    <div class="game-icon">🎯</div>
+
+    <h1>Lucky Number</h1>
+
+    <div class="instruction">
+      Guess a number between 1 and 10
+    </div>
+input{    <input
+      type="number"
+      id="guess"
+      min="1"
+      max="10"
+      placeholder="Enter 1 - 10"
+    >
+
+    <button onclick="checkNumber()">
+      🎯 Check Number
+    </button>
+
+    <div class="message" id="message">
+      Make your guess!
+    </div>
+
+    <div class="score">
+      ⭐ Score: <span id="score">0</span>
+    </div>
+
+    <a class="home" href="index.html">
+      🏠 Back to GameArena
+    </a>
+
+  </div>
+
+</div>
+
+<script>
+let luckyNumber = Math.floor(Math.random() * 10) + 1;
+let score = 0;
+
+function checkNumber(){
+
+  let guess = Number(document.getElementById("guess").value);
+  let message = document.getElementById("message");
+
+  if(guess < 1 || guess > 10){
+    message.textContent = "⚠️ Please enter a number from 1 to 10.";
+    return;
+  }
+
+  if(guess === luckyNumber){
+    score += 10;
+    document.getElementById("score").textContent = score;
+    message.textContent = "🎉 Correct! +10 Points!";
+    
+    luckyNumber = Math.floor(Math.random() * 10) + 1;
+  }else{
+    message.textContent = "❌ Wrong! Try again.";
+  }
+
+  document.getElementById("guess").value = "";
+}
+</script>
+  width:100%;
+  max-width:250px;
+  padding:15px;
+  border:none;
+  border-radius:14px;
+  text-align:center;
+  font-size:22px;
+  outline:none;
+}
+
+button{
+  display:block;
+  width:100%;
+  max-width:250px;
+  margin:15px auto;
+  padding:15px;
+  border:none;
+  border-radius:14px;
+  background:#7c3aed;
+  color:white;
+  font-size:20px;
+  font-weight:bold;
+  cursor:pointer;
+}</body>
 </html>
