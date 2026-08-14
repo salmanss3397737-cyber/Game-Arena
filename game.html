@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +8,7 @@
 <title>Lucky Number - GameArena</title>
 
 <style>
+
 *{
   box-sizing:border-box;
   margin:0;
@@ -30,66 +32,107 @@ body{
 }
 
 .logo{
-  font-size:36px;
+  font-size:40px;
   font-weight:bold;
-  margin-bottom:8px;
-  text-shadow:0 0 18px #8b5cf6;
+  margin-top:15px;
+  text-shadow:0 0 20px #8b5cf6;
 }
 
 .subtitle{
+  font-size:18px;
   color:#d8b4fe;
-  font-size:17px;
+  margin-top:8px;
   margin-bottom:25px;
 }
+
 .game-box{
   background:rgba(255,255,255,0.10);
-  border:1px solid rgba(255,255,255,0.18);
-  border-radius:24px;
-  padding:25px 18px;
-  box-shadow:0 10px 30px rgba(0,0,0,0.35);
+  border:1px solid rgba(255,255,255,0.20);
+  border-radius:25px;
+  padding:28px 20px;
+  box-shadow:0 10px 35px rgba(0,0,0,0.4);
 }
 
 .game-icon{
-  font-size:55px;
-  margin-bottom:12px;
+  font-size:60px;
+  margin-bottom:10px;
 }
 
 h1{
-  font-size:30px;
+  font-size:32px;
   margin-bottom:10px;
 }
 
 .instruction{
-  font-size:18px;
+  font-size:19px;
   color:#ddd6fe;
-  margin-bottom:20px;
-}
-button:active{
-  transform:scale(0.97);
+  margin-bottom:25px;
+}.number-box{
+  width:100%;
+  max-width:350px;
+  height:75px;
+  margin:0 auto 18px;
+  padding:10px 20px;
+  border:3px solid #8b5cf6;
+  border-radius:20px;
+  background:white;
+  color:#312e81;
+  font-size:32px;
+  font-weight:bold;
+  text-align:center;
+  outline:none;
+  box-shadow:0 0 25px rgba(139,92,246,0.35);
 }
 
-.score{
-  margin-top:18px;
-  padding:14px;
-  border-radius:14px;
-  background:rgba(250,204,21,0.12);
-  color:#facc15;
+.number-box:focus{
+  border-color:#c084fc;
+  box-shadow:0 0 30px rgba(192,132,252,0.65);
+}
+
+.number-box::placeholder{
+  color:#9ca3af;
+  font-size:20px;
+}
+
+.check-button{
+  width:100%;
+  max-width:350px;
+  height:60px;
+  border:none;
+  border-radius:18px;
+  background:linear-gradient(135deg,#7c3aed,#a855f7);
+  color:white;
   font-size:21px;
   font-weight:bold;
+  cursor:pointer;
+  box-shadow:0 8px 20px rgba(124,58,237,0.4);
 }
 
-.message{
-  margin-top:15px;
-  min-height:28px;
-  font-size:18px;
+.check-button:active{
+  transform:scale(0.97);
+}.message{
+  min-height:35px;
+  margin-top:20px;
+  font-size:20px;
   font-weight:bold;
 }
 
-.home{
-  display:inline-block;
+.score-box{
   margin-top:20px;
-  padding:12px 22px;
-  border-radius:14px;
+  padding:16px;
+  border-radius:18px;
+  background:rgba(250,204,21,0.12);
+  border:1px solid rgba(250,204,21,0.25);
+  color:#facc15;
+  font-size:22px;
+  font-weight:bold;
+}
+
+.home-button{
+  display:inline-block;
+  margin-top:22px;
+  padding:13px 24px;
+  border-radius:15px;
   background:#312e81;
   color:white;
   text-decoration:none;
@@ -104,93 +147,109 @@ button:active{
 <div class="container">
 
   <div class="logo">🎮 GameArena</div>
-  <div class="subtitle">Play • Challenge • Win</div>
+
+  <div class="subtitle">
+    Play • Challenge • Win
+  </div>
 
   <div class="game-box">
+
     <div class="game-icon">🎯</div>
 
     <h1>Lucky Number</h1>
 
     <div class="instruction">
       Guess a number between 1 and 10
-    </div>
-input{    <input
+    </div>    <input
+      class="number-box"
       type="number"
       id="guess"
       min="1"
       max="10"
-      placeholder="Enter 1 - 10"
+      placeholder="Enter Number"
     >
 
-    <button onclick="checkNumber()">
-      🎯 Check Number
+    <button
+      class="check-button"
+      onclick="checkNumber()">
+      🎯 Check Answer
     </button>
 
     <div class="message" id="message">
-      Make your guess!
+      Enter your lucky number!
     </div>
 
-    <div class="score">
-      ⭐ Score: <span id="score">0</span>
-    </div>
-
-    <a class="home" href="index.html">
+    <div class="score-box">
+      ⭐ Score: <span id="score">0</span> Points
+    </div>    <a class="home-button" href="index.html">
       🏠 Back to GameArena
     </a>
 
   </div>
-
 </div>
 
 <script>
+
 let luckyNumber = Math.floor(Math.random() * 10) + 1;
 let score = 0;
 
 function checkNumber(){
 
-  let guess = Number(document.getElementById("guess").value);
-  let message = document.getElementById("message");
+  let guess = Number(
+    document.getElementById("guess").value
+  );
 
-  if(guess < 1 || guess > 10){
-    message.textContent = "⚠️ Please enter a number from 1 to 10.";
+  let message =
+    document.getElementById("message");
+
+  if(!guess || guess < 1 || guess > 10){
+
+    message.textContent =
+      "⚠️ Please enter a number from 1 to 10.";
+
+    message.style.color = "#facc15";
+
     return;
   }
 
   if(guess === luckyNumber){
+
     score += 10;
-    document.getElementById("score").textContent = score;
-    message.textContent = "🎉 Correct! +10 Points!";
-    
-    luckyNumber = Math.floor(Math.random() * 10) + 1;
-  }else{
-    message.textContent = "❌ Wrong! Try again.";
+
+    document.getElementById("score").textContent =
+      score;
+
+    message.textContent =
+      "🎉 CORRECT! +10 Points ⭐";
+
+    message.style.color = "#22c55e";
+
+    luckyNumber =
+      Math.floor(Math.random() * 10) + 1;
+
+  }
+
+  else if(guess < luckyNumber){
+
+    message.textContent =
+      "⬆️ Too Low! Try a HIGHER number.";
+
+    message.style.color = "#f97316";
+
+  }
+
+  else{
+
+    message.textContent =
+      "⬇️ Too High! Try a LOWER number.";
+
+    message.style.color = "#ef4444";
   }
 
   document.getElementById("guess").value = "";
 }
-</script>
-  width:100%;
-  max-width:250px;
-  padding:15px;
-  border:none;
-  border-radius:14px;
-  text-align:center;
-  font-size:22px;
-  outline:none;
-}
 
-button{
-  display:block;
-  width:100%;
-  max-width:250px;
-  margin:15px auto;
-  padding:15px;
-  border:none;
-  border-radius:14px;
-  background:#7c3aed;
-  color:white;
-  font-size:20px;
-  font-weight:bold;
-  cursor:pointer;
-}</body>
+</script>
+
+</body>
 </html>
