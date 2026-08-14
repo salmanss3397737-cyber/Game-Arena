@@ -1,11 +1,352 @@
-<h1>🧩 Puzzle Game</h1>
-<p>What comes next?</p>
-<h2>2, 4, 6, ?</h2>
-<button onclick="a(8)">8</button>
-<button onclick="a(9)">9</button>
-<h2 id="r"></h2>
-<script>
-function a(n){
-document.getElementById("r").innerText=n==8?"🎉 Correct!":"❌ Try Again!";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Math Puzzle - GameArena</title>
+
+<style>
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
+
+body{
+  font-family:Arial,sans-serif;
+  min-height:100vh;
+  color:white;
+  text-align:center;
+  background:
+    radial-gradient(circle at top,#0f766e,#111827 48%,#030712);
+}
+
+.container{
+  width:100%;
+  max-width:600px;
+  margin:auto;
+  padding:25px 18px;
+}
+
+.logo{
+  font-size:40px;
+  font-weight:bold;
+  margin-top:15px;
+  text-shadow:0 0 20px #14b8a6;
+}
+
+.subtitle{
+  font-size:18px;
+  color:#99f6e4;
+  margin-top:8px;
+  margin-bottom:25px;
+}
+
+.game-box{
+  background:rgba(255,255,255,0.10);
+  border:1px solid rgba(255,255,255,0.20);
+  border-radius:25px;
+  padding:28px 20px;
+  box-shadow:0 10px 35px rgba(0,0,0,0.4);
+}
+
+.game-icon{
+  font-size:55px;
+  margin-bottom:10px;
+}
+
+h1{
+  font-size:30px;
+  margin-bottom:10px;
+}
+
+.question-number{
+  font-size:18px;
+  color:#99f6e4;
+  margin-bottom:20px;
+}.question{
+  font-size:38px;
+  font-weight:bold;
+  margin:20px 0 25px;
+  padding:22px 10px;
+  border-radius:20px;
+  background:rgba(20,184,166,0.15);
+  border:2px solid rgba(45,212,191,0.35);
+  color:#ffffff;
+}
+
+.answer-box{
+  width:100%;
+  max-width:350px;
+  height:70px;
+  margin:0 auto 18px;
+  padding:10px 20px;
+  border:3px solid #14b8a6;
+  border-radius:18px;
+  background:white;
+  color:#111827;
+  font-size:28px;
+  font-weight:bold;
+  text-align:center;
+  outline:none;
+}
+
+.answer-box:focus{
+  border-color:#5eead4;
+  box-shadow:0 0 25px rgba(20,184,166,0.5);
+}
+
+.answer-box::placeholder{
+  color:#9ca3af;
+  font-size:19px;
+}
+
+.submit-button{
+  width:100%;
+  max-width:350px;
+  height:60px;
+  border:none;
+  border-radius:18px;
+  background:linear-gradient(135deg,#0f766e,#14b8a6);
+  color:white;
+  font-size:21px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.submit-button:active{
+  transform:scale(0.97);
+}.result{
+  min-height:35px;
+  margin-top:20px;
+  font-size:20px;
+  font-weight:bold;
+}
+
+.score-box{
+  margin-top:20px;
+  padding:16px;
+  border-radius:18px;
+  background:rgba(250,204,21,0.12);
+  border:1px solid rgba(250,204,21,0.25);
+  color:#facc15;
+  font-size:21px;
+  font-weight:bold;
+}
+
+.progress{
+  margin-top:18px;
+  font-size:17px;
+  color:#ccfbf1;
+}
+
+.home-button{
+  display:inline-block;
+  margin-top:22px;
+  padding:13px 24px;
+  border-radius:15px;
+  background:#115e59;
+  color:white;
+  text-decoration:none;
+  font-size:17px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="logo">🎮 GameArena</div>
+
+  <div class="subtitle">
+    Learn • Practice • Win
+  </div>
+
+  <div class="game-box">
+
+    <div class="game-icon">🧩</div>
+
+    <h1>Math Puzzle</h1>
+
+    <div class="question-number" id="questionNumber">
+      Question 1 of 10
+    </div>    <div class="question" id="question">
+      Loading Question...
+    </div>
+
+    <input
+      class="answer-box"
+      type="number"
+      id="answer"
+      placeholder="Your Answer"
+    >
+
+    <button
+      class="submit-button"
+      onclick="checkAnswer()">
+      ✅ Submit Answer
+    </button>
+
+    <div class="result" id="result">
+      Solve the question!
+    </div>
+
+    <div class="score-box">
+      ⭐ Score:
+      <span id="score">0</span>
+      Points
+    </div>
+
+    <div class="progress" id="progress">
+      Correct: 0 / 10
+    </div>    <a class="home-button" href="index.html">
+      🏠 Back to GameArena
+    </a>
+
+  </div>
+</div>
+
+<script>
+
+let currentQuestion = 0;
+let score = 0;
+let correctAnswers = 0;
+let questions = [];
+
+function makeQuestion(){
+
+  let type = Math.floor(Math.random() * 5);
+  let a, b, answer, symbol;
+
+  if(type === 0){
+    a = Math.floor(Math.random() * 50) + 1;
+    b = Math.floor(Math.random() * 50) + 1;
+    answer = a + b;
+    symbol = "+";
+  }
+
+  else if(type === 1){
+    a = Math.floor(Math.random() * 50) + 20;
+    b = Math.floor(Math.random() * 20) + 1;
+    answer = a - b;
+    symbol = "-";
+  }
+
+  else if(type === 2){
+    a = Math.floor(Math.random() * 12) + 1;
+    b = Math.floor(Math.random() * 12) + 1;
+    answer = a * b;
+    symbol = "×";
+  }
+
+  else if(type === 3){
+    b = Math.floor(Math.random() * 10) + 1;
+    answer = Math.floor(Math.random() * 10) + 1;
+    a = b * answer;
+    symbol = "÷";
+  }
+
+  else{
+    a = (Math.floor(Math.random() * 10) + 1) * 10;
+    b = [10,20,25,50][Math.floor(Math.random() * 4)];
+    answer = (a * b) / 100;
+    symbol = "%";
+  }
+
+  return {
+    text: type === 4
+      ? b + "% of " + a + " = ?"
+      : a + " " + symbol + " " + b + " = ?",
+    answer: answer
+  };
+}
+
+function showQuestion(){
+
+  if(currentQuestion >= 10){
+    document.getElementById("question").textContent =
+      "🎉 Game Complete!";
+
+    document.getElementById("questionNumber").textContent =
+      "All 10 Questions Finished";
+
+    document.getElementById("result").textContent =
+      "🏆 Final Score: " + score + " Points!";
+
+    document.getElementById("progress").textContent =
+      "✅ Correct Answers: " + correctAnswers + " / 10";
+
+    document.querySelector(".answer-box").style.display = "none";
+    document.querySelector(".submit-button").style.display = "none";
+
+    return;
+  }
+
+  questions[currentQuestion] = makeQuestion();
+
+  document.getElementById("question").textContent =
+    questions[currentQuestion].text;
+
+  document.getElementById("questionNumber").textContent =
+    "Question " + (currentQuestion + 1) + " of 10";
+
+  document.getElementById("result").textContent =
+    "Solve the question!";
+
+  document.getElementById("answer").value = "";
+}
+
+function checkAnswer(){
+
+  let input = document.getElementById("answer");
+  let userAnswer = Number(input.value);
+  let result = document.getElementById("result");
+
+  if(input.value === ""){
+    result.textContent = "⚠️ Please enter your answer.";
+    result.style.color = "#facc15";
+    return;
+  }
+
+  let correct =
+    questions[currentQuestion].answer;
+
+  if(userAnswer === correct){
+
+    score += 10;
+    correctAnswers++;
+
+    document.getElementById("score").textContent =
+      score;
+
+    result.textContent =
+      "🎉 Correct! +10 ⭐";
+
+    result.style.color = "#22c55e";
+
+  }else{
+
+    result.textContent =
+      "❌ Wrong! Correct answer: " + correct;
+
+    result.style.color = "#ef4444";
+  }
+
+  document.getElementById("progress").textContent =
+    "Correct: " + correctAnswers + " / 10";
+
+  currentQuestion++;
+
+  setTimeout(showQuestion, 1200);
+}
+
+showQuestion();
+
 </script>
+
+</body>
+</html>
