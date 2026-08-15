@@ -49,7 +49,6 @@ body{
 .topbar{
   display:flex;
   justify-content:space-between;
-  align-items:center;
   gap:10px;
   margin-bottom:15px;
 }
@@ -139,17 +138,11 @@ body{
   font-weight:bold;
   cursor:pointer;
   padding:13px 15px;
-  transition:.2s;
 }
 
 .option:hover{
-  transform:translateY(-2px);
   background:#dbeafe;
   border-color:#60a5fa;
-}
-
-.option:active{
-  transform:scale(.98);
 }
 
 .option.correct{
@@ -192,15 +185,6 @@ body{
   box-shadow:0 5px 0 #1d4ed8;
 }
 
-.next-btn:hover{
-  background:#1d4ed8;
-}
-
-.next-btn:active{
-  transform:translateY(3px);
-  box-shadow:0 2px 0 #1d4ed8;
-}
-
 .final-screen{
   display:none;
   text-align:center;
@@ -232,7 +216,6 @@ body{
   font-weight:bold;
   color:#475569;
   margin-bottom:22px;
-  line-height:1.5;
 }
 
 .play-again{
@@ -244,12 +227,6 @@ body{
   font-size:19px;
   font-weight:900;
   cursor:pointer;
-  box-shadow:0 5px 0 #15803d;
-}
-
-.play-again:active{
-  transform:translateY(3px);
-  box-shadow:0 2px 0 #15803d;
 }
 
 .home-btn{
@@ -262,7 +239,6 @@ body{
   color:#2563eb;
   text-decoration:none;
   font-weight:bold;
-  box-shadow:0 5px 15px rgba(15,23,42,.10);
 }
 
 @media(max-width:500px){
@@ -290,14 +266,6 @@ body{
   .option{
     font-size:18px;
     min-height:58px;
-  }
-
-  .result{
-    font-size:18px;
-  }
-
-  .final-title{
-    font-size:26px;
   }
 }
 </style>
@@ -387,17 +355,15 @@ body{
 
 </div>
 
-
 <script>
 
-/* =========================================
-   GAMEARENA QUIZ
-   TOTAL QUESTIONS: 100
-   ========================================= */
+/* =====================================
+   GAMEARENA - 100 QUIZ QUESTIONS
+   ===================================== */
 
 const questions = [
 
-/* ===== PAKISTAN STUDIES ===== */
+/* PAKISTAN STUDIES 1-25 */
 
 {
 subject:"Pakistan Studies",
@@ -443,13 +409,6 @@ answer:2
 
 {
 subject:"Pakistan Studies",
-q:"پاکستان کا قومی پرچم کن رنگوں پر مشتمل ہے؟",
-options:["سبز اور سفید","نیلا اور سفید","سرخ اور سفید","پیلا اور سبز"],
-answer:0
-},
-
-{
-subject:"Pakistan Studies",
 q:"پاکستان کا قومی پرندہ کون سا ہے؟",
 options:["شاہین","چکور","طوطا","کبوتر"],
 answer:1
@@ -471,7 +430,7 @@ answer:1
 
 {
 subject:"Pakistan Studies",
-q:"پاکستان کا سب سے بڑا صوبہ رقبے کے لحاظ سے کون سا ہے؟",
+q:"رقبے کے لحاظ سے پاکستان کا سب سے بڑا صوبہ کون سا ہے؟",
 options:["پنجاب","سندھ","بلوچستان","خیبر پختونخوا"],
 answer:2
 },
@@ -514,7 +473,7 @@ answer:1
 {
 subject:"Pakistan Studies",
 q:"پاکستان کا سب سے لمبا دریا کون سا ہے؟",
-options:["راوی","چناب","سندھ","ستلج"],
+options:["راوی","چناب","دریائے سندھ","ستلج"],
 answer:2
 },
 
@@ -555,13 +514,6 @@ answer:0
 
 {
 subject:"Pakistan Studies",
-q:"پاکستان کا قومی ترانہ کس زبان میں زیادہ تر ہے؟",
-options:["اردو","فارسی","پنجابی","عربی"],
-answer:1
-},
-
-{
-subject:"Pakistan Studies",
 q:"پاکستان کے پہلے گورنر جنرل کون تھے؟",
 options:["لیاقت علی خان","محمد علی جناح","ایوب خان","اسکندر مرزا"],
 answer:1
@@ -574,7 +526,21 @@ options:["لیاقت علی خان","قائداعظم","ذوالفقار علی 
 answer:0
 },
 
-/* ===== ISLAMIYAT ===== */
+{
+subject:"Pakistan Studies",
+q:"پاکستان کا قومی پھل کون سا ہے؟",
+options:["سیب","آم","کیلا","مالٹا"],
+answer:1
+},
+
+{
+subject:"Pakistan Studies",
+q:"پاکستان کا قومی پرچم کن رنگوں پر مشتمل ہے؟",
+options:["سبز اور سفید","نیلا اور سفید","سرخ اور سفید","پیلا اور سبز"],
+answer:0
+},
+
+/* ISLAMIYAT 26-50 */
 
 {
 subject:"Islamiyat",
@@ -718,13 +684,6 @@ answer:0
 
 {
 subject:"Islamiyat",
-q:"صدقہ دینے کا بنیادی مقصد کیا ہے؟",
-options:["مدد اور نیکی","دولت جمع کرنا","مشہور ہونا","سفر کرنا"],
-answer:0
-},
-
-{
-subject:"Islamiyat",
 q:"اسلام میں روزہ کس مہینے میں فرض ہے؟",
 options:["محرم","رمضان","شوال","رجب"],
 answer:1
@@ -751,21 +710,14 @@ options:["مکہ سے مدینہ","مدینہ سے مکہ","مکہ سے طائف
 answer:0
 },
 
-/* ===== SOCIAL STUDIES ===== */
-
 {
-subject:"Social Studies",
-q:"ہم جس جگہ رہتے ہیں اسے کیا کہتے ہیں؟",
-options:["رہائش","سیارہ","سمندر","جنگل"],
+subject:"Islamiyat",
+q:"صدقہ دینے کا مقصد کیا ہے؟",
+options:["مدد اور نیکی","دولت جمع کرنا","مشہور ہونا","سفر کرنا"],
 answer:0
 },
 
-{
-subject:"Social Studies",
-q:"نقشہ ہمیں کس چیز کے بارے میں معلومات دے سکتا ہے؟",
-options:["مقامات","صرف کھانے","صرف کپڑے","صرف جانور"],
-answer:0
-},
+/* SOCIAL STUDIES 51-75 */
 
 {
 subject:"Social Studies",
@@ -776,22 +728,22 @@ answer:1
 
 {
 subject:"Social Studies",
-q:"درخت اور پودے ہمارے لیے کیا پیدا کرتے ہیں؟",
-options:["آکسیجن","پلاسٹک","پٹرول","لوہا"],
-answer:0
+q:"Traffic signal میں سبز بتی کا مطلب کیا ہے؟",
+options:["رکیں","چلیں","واپس جائیں","سو جائیں"],
+answer:1
 },
 
 {
 subject:"Social Studies",
 q:"اچھا شہری کیا کرتا ہے؟",
-options:["قوانین کی پابندی","کچرا سڑک پر پھینکتا ہے","دوسروں کو تنگ کرتا ہے","ٹریفک قوانین توڑتا ہے"],
+options:["قوانین کی پابندی","کچرا سڑک پر پھینکتا ہے","دوسروں کو تنگ کرتا ہے","قوانین توڑتا ہے"],
 answer:0
 },
 
 {
 subject:"Social Studies",
 q:"اسکول میں ہمیں کیا سیکھنے کا موقع ملتا ہے؟",
-options:["تعلیم","صرف کھیل","صرف خریداری","صرف سفر"],
+options:["تعلیم","صرف خریداری","صرف سفر","صرف آرام"],
 answer:0
 },
 
@@ -853,34 +805,6 @@ answer:2
 
 {
 subject:"Social Studies",
-q:"ٹریفک سگنل میں سبز بتی کا مطلب کیا ہے؟",
-options:["رکیں","چلیں","واپس جائیں","سو جائیں"],
-answer:1
-},
-
-{
-subject:"Social Studies",
-q:"سفید لکیروں والی سڑک پار کرنے کی جگہ کو کیا کہتے ہیں؟",
-options:["Zebra Crossing","Parking","Bridge","Tunnel"],
-answer:0
-},
-
-{
-subject:"Social Studies",
-q:"کسی ملک کا قانون توڑنا کیسا عمل ہے؟",
-options:["اچھا","درست","غلط","ضروری"],
-answer:2
-},
-
-{
-subject:"Social Studies",
-q:"پانی کو ضائع کرنے سے ہمیں کیا کرنا چاہیے؟",
-options:["بچانا چاہیے","زیادہ بہانا چاہیے","سڑک پر ڈالنا چاہیے","پھینک دینا چاہیے"],
-answer:0
-},
-
-{
-subject:"Social Studies",
 q:"کتابیں پڑھنے کی جگہ کو کیا کہتے ہیں؟",
 options:["Library","Hospital","Market","Airport"],
 answer:0
@@ -893,7 +817,84 @@ options:["احترام اور پابندی","نظر انداز","توڑنا","چ
 answer:0
 },
 
-/* ===== GENERAL KNOWLEDGE ===== */
+{
+subject:"Social Studies",
+q:"نقشہ ہمیں کس چیز کے بارے میں معلومات دیتا ہے؟",
+options:["مقامات","صرف کھانے","صرف کپڑے","صرف جانور"],
+answer:0
+},
+
+{
+subject:"Social Studies",
+q:"پانی کو ضائع کرنے کے بجائے کیا کرنا چاہیے؟",
+options:["بچانا چاہیے","زیادہ بہانا چاہیے","سڑک پر ڈالنا چاہیے","پھینک دینا چاہیے"],
+answer:0
+},
+
+{
+subject:"Social Studies",
+q:"سڑک پر گاڑی چلاتے وقت کس چیز کی پابندی ضروری ہے؟",
+options:["Traffic Rules","کھیل کے اصول","کھانے کے اصول","اسکول کے اوقات"],
+answer:0
+},
+
+{
+subject:"Social Studies",
+q:"پارک میں کچرا پھینکنا کیسا عمل ہے؟",
+options:["اچھا","غلط","ضروری","مزاحیہ"],
+answer:1
+},
+
+{
+subject:"Social Studies",
+q:"درخت ہمارے ماحول کے لیے کیسے فائدہ مند ہیں؟",
+options:["ہوا صاف کرتے ہیں","آلودگی بڑھاتے ہیں","شور پیدا کرتے ہیں","پانی ختم کرتے ہیں"],
+answer:0
+},
+
+{
+subject:"Social Studies",
+q:"پانی کا اہم ذریعہ کون سا ہے؟",
+options:["دریا","پلاسٹک","موبائل","کمپیوٹر"],
+answer:0
+},
+
+{
+subject:"Social Studies",
+q:"آگ لگنے کی صورت میں کس ادارے سے مدد لی جاتی ہے؟",
+options:["Fire Brigade","Library","School","Market"],
+answer:0
+},
+
+{
+subject:"Social Studies",
+q:"ڈاکٹر کا بنیادی کام کیا ہے؟",
+options:["مریضوں کا علاج","گاڑی چلانا","مکان بنانا","فصل کاٹنا"],
+answer:0
+},
+
+{
+subject:"Social Studies",
+q:"استاد کا بنیادی کام کیا ہے؟",
+options:["تعلیم دینا","مریضوں کا علاج","گاڑی چلانا","فصل اگانا"],
+answer:0
+},
+
+{
+subject:"Social Studies",
+q:"ہمیں دوسروں کے ساتھ کیسا سلوک کرنا چاہیے؟",
+options:["احترام سے","بدتمیزی سے","غصے سے","نفرت سے"],
+answer:0
+},
+
+{
+subject:"Social Studies",
+q:"ملک کی ترقی میں کون کردار ادا کرتا ہے؟",
+options:["تمام شہری","صرف بچے","صرف استاد","صرف ڈاکٹر"],
+answer:0
+},
+
+/* GENERAL KNOWLEDGE 76-100 */
 
 {
 subject:"General Knowledge",
@@ -932,7 +933,7 @@ answer:1
 
 {
 subject:"General Knowledge",
-q:"ایک سال میں عام طور پر کتنے مہینے ہوتے ہیں؟",
+q:"ایک سال میں کتنے مہینے ہوتے ہیں؟",
 options:["10","11","12","13"],
 answer:2
 },
@@ -988,13 +989,6 @@ answer:1
 
 {
 subject:"General Knowledge",
-q:"انسان کے کتنے پاؤں ہوتے ہیں؟",
-options:["1","2","3","4"],
-answer:1
-},
-
-{
-subject:"General Knowledge",
 q:"پانی جم کر کیا بنتا ہے؟",
 options:["برف","بھاپ","دھواں","نمک"],
 answer:0
@@ -1016,15 +1010,8 @@ answer:0
 
 {
 subject:"General Knowledge",
-q:"دنیا میں سب سے زیادہ بولی جانے والی زبانوں میں سے ایک کون سی ہے؟",
-options:["چینی","لاطینی","قدیم مصری","سنسکرت"],
-answer:0
-},
-
-{
-subject:"General Knowledge",
 q:"کمپیوٹر میں لکھنے کے لیے کیا استعمال کرتے ہیں؟",
-options:["Keyboard","Speaker","Mouse Pad","Printer"],
+options:["Keyboard","Speaker","Printer","Monitor"],
 answer:0
 },
 
@@ -1032,13 +1019,6 @@ answer:0
 subject:"General Knowledge",
 q:"کمپیوٹر کی screen کو کیا کہتے ہیں؟",
 options:["Monitor","Keyboard","Mouse","Printer"],
-answer:0
-},
-
-{
-subject:"General Knowledge",
-q:"گاڑی چلانے کے لیے کس چیز کی ضرورت ہوتی ہے؟",
-options:["ڈرائیور","استاد","ڈاکٹر","کسان"],
 answer:0
 },
 
@@ -1068,16 +1048,35 @@ subject:"General Knowledge",
 q:"رات کو آسمان پر کیا نظر آتا ہے؟",
 options:["چاند اور ستارے","صرف سورج","صرف بادل","صرف درخت"],
 answer:0
+},
+
+{
+subject:"General Knowledge",
+q:"ایک دن میں کتنے گھنٹے ہوتے ہیں؟",
+options:["12","18","24","30"],
+answer:2
+},
+
+{
+subject:"General Knowledge",
+q:"ایک گھنٹے میں کتنے منٹ ہوتے ہیں؟",
+options:["30","45","60","90"],
+answer:2
+},
+
+{
+subject:"General Knowledge",
+q:"ایک منٹ میں کتنے سیکنڈ ہوتے ہیں؟",
+options:["30","45","60","100"],
+answer:2
 }
 
 ];
 
 
-/* =========================================
-   RANDOM QUIZ SYSTEM
-   ========================================= */
-
-/* Questions کو random ترتیب میں لگانے کا function */
+/* =====================================
+   RANDOM SHUFFLE
+   ===================================== */
 
 function shuffleArray(array){
 
@@ -1092,40 +1091,29 @@ function shuffleArray(array){
 }
 
 
-/* ہر quiz کے لیے سوالات کی نئی ترتیب */
+/* =====================================
+   QUIZ VARIABLES
+   ===================================== */
 
-let quizQuestions = [];
-
-let currentQuestion = 0;
-
-let score = 0;
-
-let answered = false;
+let quizQuestions=[];
+let currentQuestion=0;
+let score=0;
+let answered=false;
 
 
-/* =========================================
-   START / RESTART QUIZ
-   ========================================= */
+/* =====================================
+   START QUIZ
+   ===================================== */
 
 function startQuiz(){
 
-  /*
-    اصل questions کو copy کیا جا رہا ہے۔
-    اس سے اصل question bank محفوظ رہے گا۔
-  */
+  quizQuestions=questions.map(function(q){
 
-  quizQuestions = questions.map(function(q){
-
-    return {
-
+    return{
       subject:q.subject,
-
       q:q.q,
-
       options:[...q.options],
-
       answer:q.answer
-
     };
 
   });
@@ -1136,117 +1124,85 @@ function startQuiz(){
   shuffleArray(quizQuestions);
 
 
-  /*
-    ہر سوال کے options بھی random
-    ہوں گے اور صحیح جواب بھی ساتھ move ہوگا۔
-  */
+  /* Options random */
 
   quizQuestions.forEach(function(q){
 
-    const correctAnswer =
-      q.options[q.answer];
+    const correctAnswer=q.options[q.answer];
 
     shuffleArray(q.options);
 
-    q.answer =
-      q.options.indexOf(correctAnswer);
+    q.answer=q.options.indexOf(correctAnswer);
 
   });
 
 
-  currentQuestion = 0;
+  currentQuestion=0;
+  score=0;
+  answered=false;
 
-  score = 0;
+  document.getElementById("finalScreen").style.display="none";
 
-  answered = false;
-
-
-  document.getElementById("finalScreen").style.display =
-    "none";
-
-  document.getElementById("quizCard").style.display =
-    "block";
-
+  document.getElementById("quizCard").style.display="block";
 
   showQuestion();
 
 }
 
 
-/* =========================================
+/* =====================================
    SHOW QUESTION
-   ========================================= */
+   ===================================== */
 
 function showQuestion(){
 
-  answered = false;
+  answered=false;
 
-  const q = quizQuestions[currentQuestion];
+  const q=quizQuestions[currentQuestion];
 
+  document.getElementById("questionNumber").textContent=
+    (currentQuestion+1)+" / "+quizQuestions.length;
 
-  document.getElementById("questionNumber").textContent =
-    (currentQuestion + 1) + " / " + quizQuestions.length;
+  document.getElementById("score").textContent=score;
 
+  document.getElementById("subject").textContent=q.subject;
 
-  document.getElementById("score").textContent =
-    score;
+  document.getElementById("question").textContent=q.q;
 
+  document.getElementById("result").textContent="";
 
-  document.getElementById("subject").textContent =
-    q.subject;
-
-
-  document.getElementById("question").textContent =
-    q.q;
+  document.getElementById("nextBtn").style.display="none";
 
 
-  document.getElementById("result").textContent =
-    "";
+  const progress=
+    ((currentQuestion+1)/quizQuestions.length)*100;
+
+  document.getElementById("progressFill").style.width=
+    progress+"%";
+
+  document.getElementById("progressPercent").textContent=
+    Math.round(progress)+"%";
 
 
-  document.getElementById("nextBtn").style.display =
-    "none";
-
-
-  const progress =
-    ((currentQuestion + 1) / quizQuestions.length) * 100;
-
-
-  document.getElementById("progressFill").style.width =
-    progress + "%";
-
-
-  document.getElementById("progressPercent").textContent =
-    Math.round(progress) + "%";
-
-
-  const optionsContainer =
+  const optionsContainer=
     document.getElementById("options");
 
-
-  optionsContainer.innerHTML = "";
+  optionsContainer.innerHTML="";
 
 
   q.options.forEach(function(optionText,index){
 
-    const button =
-      document.createElement("button");
+    const button=document.createElement("button");
 
+    button.className="option";
 
-    button.className = "option";
+    button.textContent=optionText;
 
+    button.onclick=function(){
 
-    button.textContent =
-      optionText;
+      checkAnswer(index,button);
 
-
-    button.onclick =
-      function(){
-
-        checkAnswer(index,button);
-
-      };
-
+    };
 
     optionsContainer.appendChild(button);
 
@@ -1255,50 +1211,40 @@ function showQuestion(){
 }
 
 
-/* =========================================
+/* =====================================
    CHECK ANSWER
-   ========================================= */
+   ===================================== */
 
 function checkAnswer(selected,clickedButton){
 
-  if(answered) return;
+  if(answered)return;
 
-  answered = true;
+  answered=true;
 
+  const q=quizQuestions[currentQuestion];
 
-  const q =
-    quizQuestions[currentQuestion];
-
-
-  const buttons =
-    document.querySelectorAll(".option");
+  const buttons=document.querySelectorAll(".option");
 
 
   buttons.forEach(function(button){
 
-    button.disabled = true;
+    button.disabled=true;
 
   });
 
 
-  if(selected === q.answer){
+  if(selected===q.answer){
 
-    score += 10;
-
+    score+=10;
 
     clickedButton.classList.add("correct");
 
+    document.getElementById("score").textContent=score;
 
-    document.getElementById("score").textContent =
-      score;
-
-
-    document.getElementById("result").textContent =
+    document.getElementById("result").textContent=
       "🎉 Excellent! Correct Answer! +10 ⭐";
 
-
-    document.getElementById("result").style.color =
-      "#16a34a";
+    document.getElementById("result").style.color="#16a34a";
 
   }
 
@@ -1306,37 +1252,30 @@ function checkAnswer(selected,clickedButton){
 
     clickedButton.classList.add("wrong");
 
-
     buttons[q.answer].classList.add("correct");
 
+    document.getElementById("result").textContent=
+      "😊 Nice Try! Correct answer: "+q.options[q.answer];
 
-    document.getElementById("result").textContent =
-      "😊 Nice Try! Correct answer: " +
-      q.options[q.answer];
-
-
-    document.getElementById("result").style.color =
-      "#dc2626";
+    document.getElementById("result").style.color="#dc2626";
 
   }
 
 
-  document.getElementById("nextBtn").style.display =
-    "block";
+  document.getElementById("nextBtn").style.display="block";
 
 }
 
 
-/* =========================================
+/* =====================================
    NEXT QUESTION
-   ========================================= */
+   ===================================== */
 
 function nextQuestion(){
 
   currentQuestion++;
 
-
-  if(currentQuestion >= quizQuestions.length){
+  if(currentQuestion>=quizQuestions.length){
 
     showFinalScreen();
 
@@ -1346,13 +1285,9 @@ function nextQuestion(){
 
     showQuestion();
 
-
     window.scrollTo({
-
       top:0,
-
       behavior:"smooth"
-
     });
 
   }
@@ -1360,73 +1295,72 @@ function nextQuestion(){
 }
 
 
-/* =========================================
+/* =====================================
    FINAL SCREEN
-   ========================================= */
+   ===================================== */
 
 function showFinalScreen(){
 
-  document.getElementById("quizCard").style.display =
-    "none";
+  document.getElementById("quizCard").style.display="none";
+
+  document.getElementById("finalScreen").style.display="block";
+
+  document.getElementById("finalScore").textContent=
+    "Your Score: "+score+" / "+(quizQuestions.length*10);
 
 
-  document.getElementById("finalScreen").style.display =
-    "block";
+  let message="";
 
+  if(score>=900){
 
-  document.getElementById("finalScore").textContent =
-    "Your Score: " + score + " / " +
-    (quizQuestions.length * 10);
-
-
-  let message = "";
-
-
-  if(score >= 900){
-
-    message =
-      "🏆 Amazing! You are a Quiz Champion!";
+    message="🏆 Amazing! You are a Quiz Champion!";
 
   }
 
-  else if(score >= 750){
+  else if(score>=750){
 
-    message =
-      "🌟 Excellent Job! Keep it up!";
-
-  }
-
-  else if(score >= 600){
-
-    message =
-      "👏 Great Work! You are learning well!";
+    message="🌟 Excellent Job! Keep it up!";
 
   }
 
-  else if(score >= 400){
+  else if(score>=600){
 
-    message =
-      "😊 Good Try! Keep practicing!";
+    message="👏 Great Work! You are learning well!";
+
+  }
+
+  else if(score>=400){
+
+    message="😊 Good Try! Keep practicing!";
 
   }
 
   else{
 
-    message =
-      "💪 Don't Give Up! Try Again!";
+    message="💪 Don't Give Up! Try Again!";
 
   }
 
 
-  document.getElementById("finalMessage").textContent =
-    message;
+  document.getElementById("finalMessage").textContent=message;
 
 }
 
 
-/* =========================================
-   START QUIZ
-   ========================================= */
+/* =====================================
+   PLAY AGAIN
+   ===================================== */
+
+function restartQuiz(){
+
+  startQuiz();
+
+}
+
+
+/* =====================================
+   START
+   ===================================== */
 
 startQuiz();
 
