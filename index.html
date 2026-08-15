@@ -15,32 +15,36 @@
 
     body {
       font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #141e30, #243b55);
+      background:
+        radial-gradient(circle at top, #304b70 0%, transparent 40%),
+        linear-gradient(135deg, #0b1220, #172a46, #243b55);
       color: white;
       min-height: 100vh;
-      text-align: center;
     }
 
     header {
-      padding: 30px 15px 20px;
+      text-align: center;
+      padding: 35px 15px 20px;
     }
 
     header h1 {
-      font-size: 42px;
+      font-size: 48px;
       margin-bottom: 10px;
+      text-shadow: 0 3px 12px rgba(0,0,0,0.5);
     }
 
     header p {
       font-size: 18px;
-      color: #d8e1ec;
+      color: #dbeafe;
     }
 
     .nav-buttons {
-      margin: 25px auto;
       display: flex;
       justify-content: center;
+      align-items: center;
       gap: 10px;
       flex-wrap: wrap;
+      margin-top: 25px;
     }
 
     .nav-btn {
@@ -51,31 +55,59 @@
       border-radius: 10px;
       font-size: 16px;
       font-weight: bold;
-      display: inline-block;
+      transition: 0.2s;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.25);
     }
 
     .nav-btn:hover {
       background: #0d47a1;
+      transform: translateY(-2px);
     }
 
     .container {
-      max-width: 1000px;
+      width: 100%;
+      max-width: 1050px;
       margin: auto;
-      padding: 20px;
+      padding: 15px 20px 30px;
     }
 
+    /* Welcome Box */
+
+    .welcome-box {
+      text-align: center;
+      background: rgba(255,255,255,0.09);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 22px;
+      padding: 30px 20px;
+      margin: 10px auto 30px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+
+    .welcome-box h2 {
+      font-size: 30px;
+      margin-bottom: 12px;
+    }
+
+    .welcome-box p {
+      color: #d8e1ec;
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    /* Account */
+
     .login-section {
-      max-width: 700px;
-      margin: 10px auto 35px;
-      padding: 25px;
+      text-align: center;
       background: rgba(255,255,255,0.10);
-      border-radius: 18px;
+      border-radius: 20px;
+      padding: 25px 20px;
+      margin-bottom: 35px;
       box-shadow: 0 8px 25px rgba(0,0,0,0.3);
     }
 
     .login-section h2 {
-      margin-bottom: 10px;
       font-size: 28px;
+      margin-bottom: 10px;
     }
 
     .login-section p {
@@ -95,8 +127,9 @@
       color: white;
       padding: 14px 30px;
       border-radius: 10px;
-      font-weight: bold;
       font-size: 17px;
+      font-weight: bold;
+      transition: 0.2s;
     }
 
     .login {
@@ -107,31 +140,47 @@
       background: #00c853;
     }
 
-    .login:hover {
-      background: #1565c0;
+    .position {
+      background: #9c27b0;
     }
 
-    .register:hover {
-      background: #00a844;
+    .account-btn:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.1);
     }
 
-    .container h2.games-title {
-      font-size: 30px;
+    /* Games */
+
+    .games-title {
+      text-align: center;
+      font-size: 32px;
       margin-bottom: 25px;
     }
 
     .games {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 22px;
     }
 
     .game-card {
+      text-align: center;
       background: rgba(255,255,255,0.10);
-      border: 1px solid rgba(255,255,255,0.2);
-      border-radius: 18px;
-      padding: 25px 15px;
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 20px;
+      padding: 28px 18px;
       box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+      transition: 0.25s;
+    }
+
+    .game-card:hover {
+      transform: translateY(-6px);
+      background: rgba(255,255,255,0.14);
+    }
+
+    .game-icon {
+      font-size: 48px;
+      margin-bottom: 12px;
     }
 
     .game-card h3 {
@@ -141,7 +190,9 @@
 
     .game-card p {
       color: #d8e1ec;
-      margin-bottom: 18px;
+      line-height: 1.5;
+      min-height: 48px;
+      margin-bottom: 20px;
     }
 
     .play-btn {
@@ -149,29 +200,88 @@
       text-decoration: none;
       background: #ff9800;
       color: white;
-      padding: 12px 25px;
+      padding: 12px 27px;
       border-radius: 10px;
       font-weight: bold;
+      transition: 0.2s;
     }
 
     .play-btn:hover {
       background: #f57c00;
+      transform: scale(1.04);
+    }
+
+    /* Features */
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-top: 35px;
+    }
+
+    .feature {
+      text-align: center;
+      background: rgba(255,255,255,0.07);
+      border-radius: 16px;
+      padding: 20px 12px;
+    }
+
+    .feature .icon {
+      font-size: 32px;
+      margin-bottom: 8px;
+    }
+
+    .feature h3 {
+      margin-bottom: 7px;
+    }
+
+    .feature p {
+      color: #cbd5e1;
+      font-size: 14px;
     }
 
     footer {
+      text-align: center;
       margin-top: 40px;
-      padding: 20px;
-      background: rgba(0,0,0,0.25);
+      padding: 25px 15px;
+      background: rgba(0,0,0,0.28);
       color: #cbd5e1;
     }
 
-    @media (max-width: 500px) {
+    footer p {
+      margin: 5px;
+    }
+
+    @media (max-width: 600px) {
+
+      header {
+        padding-top: 25px;
+      }
+
       header h1 {
-        font-size: 34px;
+        font-size: 36px;
+      }
+
+      header p {
+        font-size: 16px;
+      }
+
+      .nav-btn {
+        padding: 10px 15px;
+        font-size: 14px;
+      }
+
+      .welcome-box h2 {
+        font-size: 25px;
       }
 
       .games-title {
-        font-size: 26px !important;
+        font-size: 27px;
+      }
+
+      .game-card {
+        padding: 25px 15px;
       }
     }
   </style>
@@ -179,11 +289,15 @@
 
 <body>
 
+  <!-- HEADER -->
+
   <header>
 
     <h1>🎮 GameArena</h1>
 
-    <p>Welcome to GameArena — Free Online Games</p>
+    <p>
+      Welcome to GameArena — Free Online Games
+    </p>
 
     <div class="nav-buttons">
 
@@ -204,16 +318,30 @@
   </header>
 
 
-  <div class="container">
+  <main class="container">
 
-    <!-- LOGIN / REGISTRATION SECTION -->
+    <!-- WELCOME -->
 
-    <div class="login-section">
+    <section class="welcome-box">
+
+      <h2>🔥 Welcome to GameArena!</h2>
+
+      <p>
+        Play exciting games, test your skills, challenge yourself
+        and check your position on the leaderboard.
+      </p>
+
+    </section>
+
+
+    <!-- ACCOUNT -->
+
+    <section class="login-section">
 
       <h2>👤 GameArena Account</h2>
 
       <p>
-        Login to your account or create a new account to play games.
+        Login to your account or create a new account to start playing.
       </p>
 
       <div class="account-buttons">
@@ -226,20 +354,31 @@
           📝 Create Account
         </a>
 
+        <a href="position.html" class="account-btn position">
+          🏆 Position Holders
+        </a>
+
       </div>
 
-    </div>
+    </section>
 
 
     <!-- GAMES -->
 
-    <h2 class="games-title">🎯 Choose a Game</h2>
+    <h2 class="games-title">
+      🎯 Choose a Game
+    </h2>
 
     <div class="games">
 
+
+      <!-- LUCKY NUMBER -->
+
       <div class="game-card">
 
-        <h3>🎯 Lucky Number</h3>
+        <div class="game-icon">🎯</div>
+
+        <h3>Lucky Number</h3>
 
         <p>
           Try your luck and find the winning number!
@@ -252,9 +391,13 @@
       </div>
 
 
+      <!-- PUZZLE -->
+
       <div class="game-card">
 
-        <h3>🧩 Puzzle Game</h3>
+        <div class="game-icon">🧩</div>
+
+        <h3>Puzzle Game</h3>
 
         <p>
           Challenge your brain with exciting puzzles.
@@ -267,9 +410,13 @@
       </div>
 
 
+      <!-- QUIZ -->
+
       <div class="game-card">
 
-        <h3>🧠 Quiz Game</h3>
+        <div class="game-icon">🧠</div>
+
+        <h3>Quiz Game</h3>
 
         <p>
           Test your knowledge with interesting questions.
@@ -283,13 +430,77 @@
 
     </div>
 
-  </div>
 
+    <!-- FEATURES -->
+
+    <div class="features">
+
+      <div class="feature">
+
+        <div class="icon">🎮</div>
+
+        <h3>Fun Games</h3>
+
+        <p>
+          Enjoy different games and challenges.
+        </p>
+
+      </div>
+
+
+      <div class="feature">
+
+        <div class="icon">🏆</div>
+
+        <h3>Leaderboard</h3>
+
+        <p>
+          Check the position holders and compete.
+        </p>
+
+      </div>
+
+
+      <div class="feature">
+
+        <div class="icon">👤</div>
+
+        <h3>Your Account</h3>
+
+        <p>
+          Login or register to use GameArena.
+        </p>
+
+      </div>
+
+
+      <div class="feature">
+
+        <div class="icon">⭐</div>
+
+        <h3>Improve Your Skills</h3>
+
+        <p>
+          Play, learn and improve your performance.
+        </p>
+
+      </div>
+
+    </div>
+
+  </main>
+
+
+  <!-- FOOTER -->
 
   <footer>
 
     <p>
       © 2026 GameArena — All Rights Reserved
+    </p>
+
+    <p>
+      🎮 Play • 🧠 Learn • 🏆 Compete
     </p>
 
   </footer>
