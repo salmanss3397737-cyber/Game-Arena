@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>GameArena - Position Holders</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#f1f8f4;
+    text-align:center;
+}
+
+header{
+    background:#087f3e;
+    color:white;
+    padding:20px;
+}
+
+table{
+    width:95%;
+    max-width:600px;
+    margin:30px auto;
+    border-collapse:collapse;
+    background:white;
+    box-shadow:0 5px 20px rgba(0,0,0,.15);
+}
+
+th,td{
+    padding:15px;
+    border-bottom:1px solid #ddd;
+}
+
+th{
+    background:#087f3e;
+    color:white;
+}
+
+button{
+    padding:10px 20px;
+    border:0;
+    border-radius:8px;
+    background:#087f3e;
+    color:white;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>🏆 GameArena</h1>
+
+<h2>Position Holders</h2>
+
+</header>
+
+<table>
+
+<thead>
+
+<tr>
+<th>Position</th>
+<th>Username</th>
+<th>Score</th>
+</tr>
+
+</thead>
+
+<tbody id="ranking"></tbody>
+
+</table>
+
+<script>
+
+let users =
+JSON.parse(localStorage.getItem("gameArenaUsers")) || [];
+
+users.sort(function(a,b){
+
+    return b.score - a.score;
+
+});
+
+let ranking =
+document.getElementById("ranking");
+
+users.forEach(function(user,index){
+
+    let row = document.createElement("tr");
+
+    row.innerHTML = `
+        <td>${index + 1}</td>
+        <td>${user.username}</td>
+        <td>${user.score}</td>
+    `;
+
+    ranking.appendChild(row);
+
+});
+
+</script>
+
+</body>
+
+</html>
