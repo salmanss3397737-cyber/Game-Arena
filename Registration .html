@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GameArena - Registration</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:linear-gradient(135deg,#063b20,#0b7a43);
+    color:white;
+    text-align:center;
+}
+
+.box{
+    width:90%;
+    max-width:400px;
+    margin:70px auto;
+    padding:25px;
+    background:white;
+    color:#222;
+    border-radius:20px;
+    box-shadow:0 8px 25px rgba(0,0,0,.3);
+}
+
+input{
+    width:90%;
+    padding:13px;
+    margin:9px 0;
+    border:1px solid #ccc;
+    border-radius:10px;
+    font-size:16px;
+}
+
+button{
+    width:95%;
+    padding:13px;
+    margin-top:12px;
+    border:0;
+    border-radius:10px;
+    background:#087f3e;
+    color:white;
+    font-size:17px;
+    font-weight:bold;
+}
+
+a{
+    color:#087f3e;
+    font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+
+<h1>🎮 GameArena</h1>
+<h2>Create Account</h2>
+
+<input type="text" id="username" placeholder="Username">
+<input type="email" id="email" placeholder="Email">
+<input type="password" id="password" placeholder="Password">
+<input type="password" id="confirmPassword" placeholder="Confirm Password">
+
+<button onclick="register()">Register</button>
+
+<p id="message"></p>
+
+<p>Already have an account?</p>
+<a href="login.html">Login</a>
+
+</div>
+
+<script>
+
+function register(){
+
+    let username = document.getElementById("username").value.trim();
+    let email = document.getElementById("email").value.trim();
+    let password = document.getElementById("password").value;
+    let confirmPassword = document.getElementById("confirmPassword").value;
+
+    if(username === "" || email === "" || password === ""){
+        document.getElementById("message").innerHTML =
+        "⚠️ Please fill all fields.";
+        return;
+    }
+
+    if(password !== confirmPassword){
+        document.getElementById("message").innerHTML =
+        "❌ Passwords do not match.";
+        return;
+    }
+
+    let users = JSON.parse(localStorage.getItem("gameArenaUsers")) || [];
+
+    let exists = users.find(user => user.username === username);
+
+    if(exists){
+        document.getElementById("message").innerHTML =
+        "❌ Username already exists.";
+        return;
+    }
+
+    users.push({
+        username: username,
+        email: email,
+        password: password,
+        score: 0
+    });
+
+    localStorage.setItem("gameArenaUsers", JSON.stringify(users));
+
+    document.getElementById("message").innerHTML =
+    "✅ Registration successful!";
+
+    setTimeout(function(){
+        window.location.href = "login.html";
+    },1000);
+}
+
+</script>
+
+</body>
+</html>
