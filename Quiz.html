@@ -14,7 +14,7 @@
 }
 
 body{
-  font-family: "Trebuchet MS", Arial, sans-serif;
+  font-family:"Trebuchet MS",Arial,sans-serif;
   min-height:100vh;
   background:linear-gradient(135deg,#dbeafe,#fef3c7,#dcfce7);
   color:#172554;
@@ -27,7 +27,6 @@ body{
   margin:auto;
 }
 
-/* Header */
 .header{
   text-align:center;
   margin-bottom:20px;
@@ -47,7 +46,6 @@ body{
   color:#475569;
 }
 
-/* Score Card */
 .topbar{
   display:flex;
   justify-content:space-between;
@@ -72,7 +70,6 @@ body{
   font-size:22px;
 }
 
-/* Progress */
 .progress-area{
   margin-bottom:18px;
 }
@@ -94,13 +91,12 @@ body{
 
 .progress-fill{
   height:100%;
-  width:4%;
+  width:1%;
   background:linear-gradient(90deg,#2563eb,#7c3aed);
   border-radius:20px;
   transition:.3s;
 }
 
-/* Quiz Card */
 .quiz-card{
   background:white;
   border-radius:28px;
@@ -114,19 +110,18 @@ body{
   color:#6d28d9;
   padding:8px 15px;
   border-radius:30px;
-  font-size:14px;
+  font-size:15px;
   font-weight:bold;
   margin-bottom:15px;
 }
 
 .question{
-  font-size:24px;
-  line-height:1.4;
+  font-size:25px;
+  line-height:1.5;
   font-weight:900;
   margin-bottom:22px;
 }
 
-/* Options */
 .options{
   display:flex;
   flex-direction:column;
@@ -140,7 +135,7 @@ body{
   border-radius:18px;
   background:#eff6ff;
   color:#1e3a8a;
-  font-size:18px;
+  font-size:19px;
   font-weight:bold;
   cursor:pointer;
   padding:13px 15px;
@@ -173,16 +168,15 @@ body{
   cursor:not-allowed;
 }
 
-/* Result */
 .result{
   min-height:30px;
   text-align:center;
   margin-top:18px;
-  font-size:18px;
+  font-size:19px;
   font-weight:900;
+  line-height:1.5;
 }
 
-/* Next */
 .next-btn{
   display:none;
   width:100%;
@@ -192,7 +186,7 @@ body{
   border-radius:18px;
   background:#2563eb;
   color:white;
-  font-size:19px;
+  font-size:20px;
   font-weight:900;
   cursor:pointer;
   box-shadow:0 5px 0 #1d4ed8;
@@ -207,7 +201,6 @@ body{
   box-shadow:0 2px 0 #1d4ed8;
 }
 
-/* Final Screen */
 .final-screen{
   display:none;
   text-align:center;
@@ -235,10 +228,11 @@ body{
 }
 
 .final-message{
-  font-size:18px;
+  font-size:19px;
   font-weight:bold;
   color:#475569;
   margin-bottom:22px;
+  line-height:1.5;
 }
 
 .play-again{
@@ -258,7 +252,6 @@ body{
   box-shadow:0 2px 0 #15803d;
 }
 
-/* Home */
 .home-btn{
   display:block;
   text-align:center;
@@ -272,7 +265,6 @@ body{
   box-shadow:0 5px 15px rgba(15,23,42,.10);
 }
 
-/* Mobile */
 @media(max-width:500px){
 
   body{
@@ -292,12 +284,16 @@ body{
   }
 
   .question{
-    font-size:21px;
+    font-size:22px;
   }
 
   .option{
-    font-size:17px;
-    min-height:56px;
+    font-size:18px;
+    min-height:58px;
+  }
+
+  .result{
+    font-size:18px;
   }
 
   .final-title{
@@ -320,7 +316,7 @@ body{
 
     <div class="question-box">
       Question
-      <div id="questionNumber">1 / 25</div>
+      <div id="questionNumber">1 / 100</div>
     </div>
 
     <div class="score-box">
@@ -334,7 +330,7 @@ body{
 
     <div class="progress-text">
       <span>Quiz Progress</span>
-      <span id="progressPercent">4%</span>
+      <span id="progressPercent">1%</span>
     </div>
 
     <div class="progress-bar">
@@ -343,8 +339,6 @@ body{
 
   </div>
 
-
-  <!-- Quiz -->
   <div class="quiz-card" id="quizCard">
 
     <div class="subject" id="subject">
@@ -365,8 +359,6 @@ body{
 
   </div>
 
-
-  <!-- Final -->
   <div class="final-screen" id="finalScreen">
 
     <div class="trophy">🏆</div>
@@ -376,7 +368,7 @@ body{
     </div>
 
     <div class="final-score" id="finalScore">
-      Your Score: 0 / 250
+      Your Score: 0 / 1000
     </div>
 
     <div class="final-message" id="finalMessage">
@@ -389,7 +381,6 @@ body{
 
   </div>
 
-
   <a href="index.html" class="home-btn">
     🏠 Back to GameArena
   </a>
@@ -399,228 +390,831 @@ body{
 
 <script>
 
-/* =========================
-   GAMEARENA QUIZ QUESTIONS
-   Total: 25
-   ========================= */
+/* =========================================
+   GAMEARENA QUIZ
+   TOTAL QUESTIONS: 100
+   ========================================= */
 
 const questions = [
 
-  {
-    subject:"Pakistan Studies",
-    q:"پاکستان کا دارالحکومت کون سا شہر ہے؟",
-    options:["کراچی","اسلام آباد","لاہور","پشاور"],
-    answer:1
-  },
+/* ===== PAKISTAN STUDIES ===== */
 
-  {
-    subject:"Pakistan Studies",
-    q:"پاکستان کب آزاد ہوا؟",
-    options:["14 اگست 1947","23 مارچ 1940","14 اگست 1948","15 اگست 1947"],
-    answer:0
-  },
+{
+subject:"Pakistan Studies",
+q:"پاکستان کا دارالحکومت کون سا شہر ہے؟",
+options:["کراچی","اسلام آباد","لاہور","پشاور"],
+answer:1
+},
 
-  {
-    subject:"Pakistan Studies",
-    q:"پاکستان کے بانی کون ہیں؟",
-    options:["علامہ اقبال","قائداعظم محمد علی جناح","لیاقت علی خان","سر سید احمد خان"],
-    answer:1
-  },
+{
+subject:"Pakistan Studies",
+q:"پاکستان کب آزاد ہوا؟",
+options:["14 اگست 1947","23 مارچ 1940","14 اگست 1948","15 اگست 1947"],
+answer:0
+},
 
-  {
-    subject:"Pakistan Studies",
-    q:"پاکستان کا قومی پھول کون سا ہے؟",
-    options:["گلاب","چنبیلی","نرگس","سورج مکھی"],
-    answer:1
-  },
+{
+subject:"Pakistan Studies",
+q:"پاکستان کے بانی کون ہیں؟",
+options:["علامہ اقبال","قائداعظم محمد علی جناح","لیاقت علی خان","سر سید احمد خان"],
+answer:1
+},
 
-  {
-    subject:"Pakistan Studies",
-    q:"پاکستان کا قومی جانور کون سا ہے؟",
-    options:["شیر","مارخور","ہرن","چیتا"],
-    answer:1
-  },
+{
+subject:"Pakistan Studies",
+q:"پاکستان کا قومی پھول کون سا ہے؟",
+options:["گلاب","چنبیلی","نرگس","سورج مکھی"],
+answer:1
+},
 
-  {
-    subject:"Pakistan Studies",
-    q:"پاکستان کا قومی کھیل عام طور پر کس کھیل کو کہا جاتا ہے؟",
-    options:["کرکٹ","فٹبال","ہاکی","کبڈی"],
-    answer:2
-  },
+{
+subject:"Pakistan Studies",
+q:"پاکستان کا قومی جانور کون سا ہے؟",
+options:["شیر","مارخور","ہرن","چیتا"],
+answer:1
+},
 
-  {
-    subject:"Pakistan Studies",
-    q:"پاکستان کا قومی پرچم کس رنگ پر مشتمل ہے؟",
-    options:["سبز اور سفید","نیلا اور سفید","سرخ اور سفید","پیلا اور سبز"],
-    answer:0
-  },
+{
+subject:"Pakistan Studies",
+q:"پاکستان کا قومی کھیل عام طور پر کس کھیل کو کہا جاتا ہے؟",
+options:["کرکٹ","فٹبال","ہاکی","کبڈی"],
+answer:2
+},
 
+{
+subject:"Pakistan Studies",
+q:"پاکستان کا قومی پرچم کن رنگوں پر مشتمل ہے؟",
+options:["سبز اور سفید","نیلا اور سفید","سرخ اور سفید","پیلا اور سبز"],
+answer:0
+},
 
-  {
-    subject:"Islamiyat",
-    q:"اسلام کے کتنے بنیادی ارکان ہیں؟",
-    options:["3","4","5","6"],
-    answer:2
-  },
+{
+subject:"Pakistan Studies",
+q:"پاکستان کا قومی پرندہ کون سا ہے؟",
+options:["شاہین","چکور","طوطا","کبوتر"],
+answer:1
+},
 
-  {
-    subject:"Islamiyat",
-    q:"مسلمان دن میں کتنی فرض نمازیں ادا کرتے ہیں؟",
-    options:["3","4","5","6"],
-    answer:2
-  },
+{
+subject:"Pakistan Studies",
+q:"پاکستان کی قومی زبان کون سی ہے؟",
+options:["پنجابی","سندھی","اردو","انگریزی"],
+answer:2
+},
 
-  {
-    subject:"Islamiyat",
-    q:"اسلامی سال کا پہلا مہینہ کون سا ہے؟",
-    options:["رمضان","محرم","شوال","رجب"],
-    answer:1
-  },
+{
+subject:"Pakistan Studies",
+q:"پاکستان کا سب سے بڑا شہر کون سا ہے؟",
+options:["لاہور","کراچی","اسلام آباد","کوئٹہ"],
+answer:1
+},
 
-  {
-    subject:"Islamiyat",
-    q:"قرآن مجید کس زبان میں نازل ہوا؟",
-    options:["فارسی","اردو","عربی","ترکی"],
-    answer:2
-  },
+{
+subject:"Pakistan Studies",
+q:"پاکستان کا سب سے بڑا صوبہ رقبے کے لحاظ سے کون سا ہے؟",
+options:["پنجاب","سندھ","بلوچستان","خیبر پختونخوا"],
+answer:2
+},
 
-  {
-    subject:"Islamiyat",
-    q:"رمضان المبارک میں مسلمان کون سی عبادت کرتے ہیں؟",
-    options:["روزہ","صرف حج","صرف قربانی","صرف صدقہ"],
-    answer:0
-  },
+{
+subject:"Pakistan Studies",
+q:"پاکستان میں کتنے صوبے ہیں؟",
+options:["2","3","4","5"],
+answer:2
+},
 
-  {
-    subject:"Islamiyat",
-    q:"اسلام کی آخری نبی کون ہیں؟",
-    options:["حضرت موسیٰؑ","حضرت عیسیٰؑ","حضرت ابراہیمؑ","حضرت محمد ﷺ"],
-    answer:3
-  },
+{
+subject:"Pakistan Studies",
+q:"مینارِ پاکستان کس شہر میں ہے؟",
+options:["کراچی","لاہور","اسلام آباد","ملتان"],
+answer:1
+},
 
+{
+subject:"Pakistan Studies",
+q:"قائداعظم محمد علی جناح کی پیدائش کب ہوئی؟",
+options:["25 دسمبر 1876","14 اگست 1947","23 مارچ 1940","9 نومبر 1877"],
+answer:0
+},
 
-  {
-    subject:"Social Studies",
-    q:"ہم جس جگہ رہتے ہیں اسے کیا کہتے ہیں؟",
-    options:["رہائش","سیارہ","سمندر","جنگل"],
-    answer:0
-  },
+{
+subject:"Pakistan Studies",
+q:"علامہ اقبال کو کس نام سے بھی یاد کیا جاتا ہے؟",
+options:["شاعرِ مشرق","بابائے قوم","مصورِ پاکستان","فاتحِ پاکستان"],
+answer:0
+},
 
-  {
-    subject:"Social Studies",
-    q:"نقشہ ہمیں کس چیز کے بارے میں معلومات دے سکتا ہے؟",
-    options:["مقامات","صرف کھانے","صرف کپڑے","صرف جانور"],
-    answer:0
-  },
+{
+subject:"Pakistan Studies",
+q:"یومِ پاکستان کب منایا جاتا ہے؟",
+options:["14 اگست","23 مارچ","25 دسمبر","6 ستمبر"],
+answer:1
+},
 
-  {
-    subject:"Social Studies",
-    q:"ٹریفک سگنل میں سرخ بتی کا مطلب کیا ہے؟",
-    options:["چلیں","رکیں","تیز چلیں","واپس جائیں"],
-    answer:1
-  },
+{
+subject:"Pakistan Studies",
+q:"پاکستان کا سب سے لمبا دریا کون سا ہے؟",
+options:["راوی","چناب","سندھ","ستلج"],
+answer:2
+},
 
-  {
-    subject:"Social Studies",
-    q:"درخت اور پودے ہمارے لیے کیا پیدا کرتے ہیں؟",
-    options:["آکسیجن","پلاسٹک","پٹرول","لوہا"],
-    answer:0
-  },
+{
+subject:"Pakistan Studies",
+q:"پاکستان کا سب سے بلند پہاڑ کون سا ہے؟",
+options:["نانگا پربت","K2","راکا پوشی","تریچ میر"],
+answer:1
+},
 
-  {
-    subject:"Social Studies",
-    q:"اچھا شہری کیا کرتا ہے؟",
-    options:["قوانین کی پابندی","کچرا سڑک پر پھینکتا ہے","دوسروں کو تنگ کرتا ہے","ٹریفک قوانین توڑتا ہے"],
-    answer:0
-  },
+{
+subject:"Pakistan Studies",
+q:"K2 دنیا کا کون سا بلند ترین پہاڑ ہے؟",
+options:["پہلا","دوسرا","تیسرا","چوتھا"],
+answer:1
+},
 
-  {
-    subject:"Social Studies",
-    q:"اسکول میں ہمیں کیا سیکھنے کا موقع ملتا ہے؟",
-    options:["تعلیم","صرف کھیل","صرف خریداری","صرف سفر"],
-    answer:0
-  },
+{
+subject:"Pakistan Studies",
+q:"پاکستان کا قومی درخت کون سا ہے؟",
+options:["دیودار","شیشم","نیم","چنار"],
+answer:0
+},
 
+{
+subject:"Pakistan Studies",
+q:"پاکستان کی کرنسی کیا ہے؟",
+options:["روپیہ","ریال","دینار","ڈالر"],
+answer:0
+},
 
-  {
-    subject:"General Knowledge",
-    q:"دنیا کا سب سے بڑا براعظم کون سا ہے؟",
-    options:["افریقہ","ایشیا","یورپ","آسٹریلیا"],
-    answer:1
-  },
+{
+subject:"Pakistan Studies",
+q:"پاکستان کا یومِ دفاع کب منایا جاتا ہے؟",
+options:["6 ستمبر","14 اگست","23 مارچ","25 دسمبر"],
+answer:0
+},
 
-  {
-    subject:"General Knowledge",
-    q:"سورج کس سمت سے طلوع ہوتا ہے؟",
-    options:["مغرب","شمال","مشرق","جنوب"],
-    answer:2
-  },
+{
+subject:"Pakistan Studies",
+q:"پاکستان کا قومی ترانہ کس زبان میں زیادہ تر ہے؟",
+options:["اردو","فارسی","پنجابی","عربی"],
+answer:1
+},
 
-  {
-    subject:"General Knowledge",
-    q:"ایک ہفتے میں کتنے دن ہوتے ہیں؟",
-    options:["5","6","7","8"],
-    answer:2
-  },
+{
+subject:"Pakistan Studies",
+q:"پاکستان کے پہلے گورنر جنرل کون تھے؟",
+options:["لیاقت علی خان","محمد علی جناح","ایوب خان","اسکندر مرزا"],
+answer:1
+},
 
-  {
-    subject:"General Knowledge",
-    q:"پانی کا کیمیائی فارمولا کیا ہے؟",
-    options:["CO2","O2","H2O","NaCl"],
-    answer:2
-  },
+{
+subject:"Pakistan Studies",
+q:"پاکستان کے پہلے وزیر اعظم کون تھے؟",
+options:["لیاقت علی خان","قائداعظم","ذوالفقار علی بھٹو","ایوب خان"],
+answer:0
+},
 
-  {
-    subject:"General Knowledge",
-    q:"زمین کا قدرتی سیٹلائٹ کون سا ہے؟",
-    options:["سورج","چاند","مریخ","زہرہ"],
-    answer:1
-  },
+/* ===== ISLAMIYAT ===== */
 
-  {
-    subject:"General Knowledge",
-    q:"ایک سال میں عام طور پر کتنے مہینے ہوتے ہیں؟",
-    options:["10","11","12","13"],
-    answer:2
-  }
+{
+subject:"Islamiyat",
+q:"اسلام کے کتنے بنیادی ارکان ہیں؟",
+options:["3","4","5","6"],
+answer:2
+},
+
+{
+subject:"Islamiyat",
+q:"مسلمان دن میں کتنی فرض نمازیں ادا کرتے ہیں؟",
+options:["3","4","5","6"],
+answer:2
+},
+
+{
+subject:"Islamiyat",
+q:"اسلامی سال کا پہلا مہینہ کون سا ہے؟",
+options:["رمضان","محرم","شوال","رجب"],
+answer:1
+},
+
+{
+subject:"Islamiyat",
+q:"قرآن مجید کس زبان میں نازل ہوا؟",
+options:["فارسی","اردو","عربی","ترکی"],
+answer:2
+},
+
+{
+subject:"Islamiyat",
+q:"رمضان المبارک میں مسلمان کون سی عبادت کرتے ہیں؟",
+options:["روزہ","صرف حج","صرف قربانی","صرف سفر"],
+answer:0
+},
+
+{
+subject:"Islamiyat",
+q:"اسلام کے آخری نبی کون ہیں؟",
+options:["حضرت موسیٰؑ","حضرت عیسیٰؑ","حضرت ابراہیمؑ","حضرت محمد ﷺ"],
+answer:3
+},
+
+{
+subject:"Islamiyat",
+q:"قرآن مجید میں کتنی سورتیں ہیں؟",
+options:["110","112","114","116"],
+answer:2
+},
+
+{
+subject:"Islamiyat",
+q:"قرآن مجید کی پہلی سورت کون سی ہے؟",
+options:["البقرہ","الفاتحہ","الناس","الاخلاص"],
+answer:1
+},
+
+{
+subject:"Islamiyat",
+q:"قرآن مجید کی سب سے بڑی سورت کون سی ہے؟",
+options:["الفاتحہ","البقرہ","الناس","یٰسین"],
+answer:1
+},
+
+{
+subject:"Islamiyat",
+q:"قرآن مجید کی سب سے چھوٹی سورت کون سی ہے؟",
+options:["الکوثر","الفلق","الناس","الاخلاص"],
+answer:0
+},
+
+{
+subject:"Islamiyat",
+q:"زکوٰۃ اسلام کا کون سا رکن ہے؟",
+options:["پہلا","دوسرا","تیسرا","چوتھا"],
+answer:2
+},
+
+{
+subject:"Islamiyat",
+q:"حج کس اسلامی مہینے میں ادا کیا جاتا ہے؟",
+options:["رمضان","شوال","ذوالحجہ","محرم"],
+answer:2
+},
+
+{
+subject:"Islamiyat",
+q:"عید الفطر کس مہینے کے بعد آتی ہے؟",
+options:["رمضان","محرم","رجب","شعبان"],
+answer:0
+},
+
+{
+subject:"Islamiyat",
+q:"مسلمانوں کی نماز کا رخ کس طرف ہوتا ہے؟",
+options:["مدینہ","مکہ مکرمہ","یروشلم","لاہور"],
+answer:1
+},
+
+{
+subject:"Islamiyat",
+q:"خانہ کعبہ کس شہر میں ہے؟",
+options:["مدینہ منورہ","مکہ مکرمہ","طائف","جدہ"],
+answer:1
+},
+
+{
+subject:"Islamiyat",
+q:"مسجد نبوی ﷺ کس شہر میں ہے؟",
+options:["مکہ مکرمہ","مدینہ منورہ","جدہ","طائف"],
+answer:1
+},
+
+{
+subject:"Islamiyat",
+q:"پہلی وحی کس غار میں نازل ہوئی؟",
+options:["غارِ ثور","غارِ حرا","غارِ احد","غارِ نور"],
+answer:1
+},
+
+{
+subject:"Islamiyat",
+q:"پہلی وحی کس فرشتے کے ذریعے آئی؟",
+options:["حضرت میکائیلؑ","حضرت اسرافیلؑ","حضرت جبرائیلؑ","حضرت عزرائیلؑ"],
+answer:2
+},
+
+{
+subject:"Islamiyat",
+q:"اسلامی کیلنڈر کو کیا کہا جاتا ہے؟",
+options:["شمسی کیلنڈر","ہجری کیلنڈر","عیسوی کیلنڈر","رومی کیلنڈر"],
+answer:1
+},
+
+{
+subject:"Islamiyat",
+q:"اذان کس عبادت کے لیے دی جاتی ہے؟",
+options:["نماز","روزہ","حج","زکوٰۃ"],
+answer:0
+},
+
+{
+subject:"Islamiyat",
+q:"صدقہ دینے کا بنیادی مقصد کیا ہے؟",
+options:["مدد اور نیکی","دولت جمع کرنا","مشہور ہونا","سفر کرنا"],
+answer:0
+},
+
+{
+subject:"Islamiyat",
+q:"اسلام میں روزہ کس مہینے میں فرض ہے؟",
+options:["محرم","رمضان","شوال","رجب"],
+answer:1
+},
+
+{
+subject:"Islamiyat",
+q:"شبِ قدر کس مہینے میں آتی ہے؟",
+options:["رمضان","محرم","شوال","صفر"],
+answer:0
+},
+
+{
+subject:"Islamiyat",
+q:"نبی کریم ﷺ کی ولادت کس شہر میں ہوئی؟",
+options:["مدینہ","مکہ مکرمہ","طائف","کوفہ"],
+answer:1
+},
+
+{
+subject:"Islamiyat",
+q:"نبی کریم ﷺ نے ہجرت کہاں کی؟",
+options:["مکہ سے مدینہ","مدینہ سے مکہ","مکہ سے طائف","مدینہ سے شام"],
+answer:0
+},
+
+/* ===== SOCIAL STUDIES ===== */
+
+{
+subject:"Social Studies",
+q:"ہم جس جگہ رہتے ہیں اسے کیا کہتے ہیں؟",
+options:["رہائش","سیارہ","سمندر","جنگل"],
+answer:0
+},
+
+{
+subject:"Social Studies",
+q:"نقشہ ہمیں کس چیز کے بارے میں معلومات دے سکتا ہے؟",
+options:["مقامات","صرف کھانے","صرف کپڑے","صرف جانور"],
+answer:0
+},
+
+{
+subject:"Social Studies",
+q:"Traffic signal میں سرخ بتی کا مطلب کیا ہے؟",
+options:["چلیں","رکیں","تیز چلیں","واپس جائیں"],
+answer:1
+},
+
+{
+subject:"Social Studies",
+q:"درخت اور پودے ہمارے لیے کیا پیدا کرتے ہیں؟",
+options:["آکسیجن","پلاسٹک","پٹرول","لوہا"],
+answer:0
+},
+
+{
+subject:"Social Studies",
+q:"اچھا شہری کیا کرتا ہے؟",
+options:["قوانین کی پابندی","کچرا سڑک پر پھینکتا ہے","دوسروں کو تنگ کرتا ہے","ٹریفک قوانین توڑتا ہے"],
+answer:0
+},
+
+{
+subject:"Social Studies",
+q:"اسکول میں ہمیں کیا سیکھنے کا موقع ملتا ہے؟",
+options:["تعلیم","صرف کھیل","صرف خریداری","صرف سفر"],
+answer:0
+},
+
+{
+subject:"Social Studies",
+q:"ہسپتال میں عام طور پر کون کام کرتے ہیں؟",
+options:["ڈاکٹر اور نرسیں","صرف کسان","صرف ڈرائیور","صرف کھلاڑی"],
+answer:0
+},
+
+{
+subject:"Social Studies",
+q:"پولیس کا بنیادی کام کیا ہے؟",
+options:["امن و امان قائم رکھنا","کھانا پکانا","کپڑے بنانا","مکان بنانا"],
+answer:0
+},
+
+{
+subject:"Social Studies",
+q:"کسان عام طور پر کیا پیدا کرتا ہے؟",
+options:["فصلیں","کمپیوٹر","گاڑیاں","موبائل"],
+answer:0
+},
+
+{
+subject:"Social Studies",
+q:"ہمیں کچرا کہاں پھینکنا چاہیے؟",
+options:["سڑک پر","Dustbin میں","دریا میں","پارک میں"],
+answer:1
+},
+
+{
+subject:"Social Studies",
+q:"سڑک پار کرتے وقت ہمیں کیا استعمال کرنا چاہیے؟",
+options:["Zebra Crossing","گھاس","نہر","چھت"],
+answer:0
+},
+
+{
+subject:"Social Studies",
+q:"تعلیم حاصل کرنے کی جگہ کو کیا کہتے ہیں؟",
+options:["اسکول","ہسپتال","بازار","پارک"],
+answer:0
+},
+
+{
+subject:"Social Studies",
+q:"پودوں کو بڑھنے کے لیے کس چیز کی ضرورت ہوتی ہے؟",
+options:["پانی اور روشنی","صرف پتھر","صرف پلاسٹک","صرف لوہا"],
+answer:0
+},
+
+{
+subject:"Social Studies",
+q:"ماحول کو صاف رکھنا کس کی ذمہ داری ہے؟",
+options:["صرف حکومت کی","صرف بچوں کی","سب کی","کسی کی نہیں"],
+answer:2
+},
+
+{
+subject:"Social Studies",
+q:"ٹریفک سگنل میں سبز بتی کا مطلب کیا ہے؟",
+options:["رکیں","چلیں","واپس جائیں","سو جائیں"],
+answer:1
+},
+
+{
+subject:"Social Studies",
+q:"سفید لکیروں والی سڑک پار کرنے کی جگہ کو کیا کہتے ہیں؟",
+options:["Zebra Crossing","Parking","Bridge","Tunnel"],
+answer:0
+},
+
+{
+subject:"Social Studies",
+q:"کسی ملک کا قانون توڑنا کیسا عمل ہے؟",
+options:["اچھا","درست","غلط","ضروری"],
+answer:2
+},
+
+{
+subject:"Social Studies",
+q:"پانی کو ضائع کرنے سے ہمیں کیا کرنا چاہیے؟",
+options:["بچانا چاہیے","زیادہ بہانا چاہیے","سڑک پر ڈالنا چاہیے","پھینک دینا چاہیے"],
+answer:0
+},
+
+{
+subject:"Social Studies",
+q:"کتابیں پڑھنے کی جگہ کو کیا کہتے ہیں؟",
+options:["Library","Hospital","Market","Airport"],
+answer:0
+},
+
+{
+subject:"Social Studies",
+q:"شہریوں کو ملک کے قوانین کا کیا کرنا چاہیے؟",
+options:["احترام اور پابندی","نظر انداز","توڑنا","چھپانا"],
+answer:0
+},
+
+/* ===== GENERAL KNOWLEDGE ===== */
+
+{
+subject:"General Knowledge",
+q:"دنیا کا سب سے بڑا براعظم کون سا ہے؟",
+options:["افریقہ","ایشیا","یورپ","آسٹریلیا"],
+answer:1
+},
+
+{
+subject:"General Knowledge",
+q:"سورج کس سمت سے طلوع ہوتا ہے؟",
+options:["مغرب","شمال","مشرق","جنوب"],
+answer:2
+},
+
+{
+subject:"General Knowledge",
+q:"ایک ہفتے میں کتنے دن ہوتے ہیں؟",
+options:["5","6","7","8"],
+answer:2
+},
+
+{
+subject:"General Knowledge",
+q:"پانی کا کیمیائی فارمولا کیا ہے؟",
+options:["CO2","O2","H2O","NaCl"],
+answer:2
+},
+
+{
+subject:"General Knowledge",
+q:"زمین کا قدرتی satellite کون سا ہے؟",
+options:["سورج","چاند","مریخ","زہرہ"],
+answer:1
+},
+
+{
+subject:"General Knowledge",
+q:"ایک سال میں عام طور پر کتنے مہینے ہوتے ہیں؟",
+options:["10","11","12","13"],
+answer:2
+},
+
+{
+subject:"General Knowledge",
+q:"سورج ایک کیا ہے؟",
+options:["ستارہ","سیارہ","سیٹلائٹ","کہکشاں"],
+answer:0
+},
+
+{
+subject:"General Knowledge",
+q:"زمین کس کے گرد چکر لگاتی ہے؟",
+options:["چاند","سورج","مریخ","زحل"],
+answer:1
+},
+
+{
+subject:"General Knowledge",
+q:"انسان سانس لینے کے لیے کون سی گیس استعمال کرتا ہے؟",
+options:["آکسیجن","کاربن ڈائی آکسائیڈ","ہائیڈروجن","ہیلیم"],
+answer:0
+},
+
+{
+subject:"General Knowledge",
+q:"دنیا کا سب سے بڑا سمندر کون سا ہے؟",
+options:["بحر اوقیانوس","بحر ہند","بحرالکاہل","بحیرہ عرب"],
+answer:2
+},
+
+{
+subject:"General Knowledge",
+q:"قوسِ قزح میں عام طور پر کتنے رنگ ہوتے ہیں؟",
+options:["5","6","7","8"],
+answer:2
+},
+
+{
+subject:"General Knowledge",
+q:"ایک درجن میں کتنی چیزیں ہوتی ہیں؟",
+options:["10","11","12","13"],
+answer:2
+},
+
+{
+subject:"General Knowledge",
+q:"انسان کے کتنے ہاتھ ہوتے ہیں؟",
+options:["1","2","3","4"],
+answer:1
+},
+
+{
+subject:"General Knowledge",
+q:"انسان کے کتنے پاؤں ہوتے ہیں؟",
+options:["1","2","3","4"],
+answer:1
+},
+
+{
+subject:"General Knowledge",
+q:"پانی جم کر کیا بنتا ہے؟",
+options:["برف","بھاپ","دھواں","نمک"],
+answer:0
+},
+
+{
+subject:"General Knowledge",
+q:"پانی گرم ہونے پر کیا بن سکتا ہے؟",
+options:["برف","بھاپ","پتھر","مٹی"],
+answer:1
+},
+
+{
+subject:"General Knowledge",
+q:"درخت کا کون سا حصہ زمین کے اندر ہوتا ہے؟",
+options:["جڑ","پھول","پتے","شاخ"],
+answer:0
+},
+
+{
+subject:"General Knowledge",
+q:"دنیا میں سب سے زیادہ بولی جانے والی زبانوں میں سے ایک کون سی ہے؟",
+options:["چینی","لاطینی","قدیم مصری","سنسکرت"],
+answer:0
+},
+
+{
+subject:"General Knowledge",
+q:"کمپیوٹر میں لکھنے کے لیے کیا استعمال کرتے ہیں؟",
+options:["Keyboard","Speaker","Mouse Pad","Printer"],
+answer:0
+},
+
+{
+subject:"General Knowledge",
+q:"کمپیوٹر کی screen کو کیا کہتے ہیں؟",
+options:["Monitor","Keyboard","Mouse","Printer"],
+answer:0
+},
+
+{
+subject:"General Knowledge",
+q:"گاڑی چلانے کے لیے کس چیز کی ضرورت ہوتی ہے؟",
+options:["ڈرائیور","استاد","ڈاکٹر","کسان"],
+answer:0
+},
+
+{
+subject:"General Knowledge",
+q:"ہوا میں اڑنے والی سواری کون سی ہے؟",
+options:["ہوائی جہاز","کشتی","ٹرین","سائیکل"],
+answer:0
+},
+
+{
+subject:"General Knowledge",
+q:"پانی میں چلنے والی سواری کون سی ہے؟",
+options:["کشتی","ہوائی جہاز","بس","سائیکل"],
+answer:0
+},
+
+{
+subject:"General Knowledge",
+q:"دن کے بعد کیا آتا ہے؟",
+options:["رات","صبح","دوپہر","دن"],
+answer:0
+},
+
+{
+subject:"General Knowledge",
+q:"رات کو آسمان پر کیا نظر آتا ہے؟",
+options:["چاند اور ستارے","صرف سورج","صرف بادل","صرف درخت"],
+answer:0
+}
 
 ];
 
 
+/* =========================================
+   RANDOM QUIZ SYSTEM
+   ========================================= */
+
+/* Questions کو random ترتیب میں لگانے کا function */
+
+function shuffleArray(array){
+
+  for(let i=array.length-1;i>0;i--){
+
+    const j=Math.floor(Math.random()*(i+1));
+
+    [array[i],array[j]]=[array[j],array[i]];
+
+  }
+
+}
+
+
+/* ہر quiz کے لیے سوالات کی نئی ترتیب */
+
+let quizQuestions = [];
+
 let currentQuestion = 0;
+
 let score = 0;
+
 let answered = false;
 
 
-/* =========================
+/* =========================================
+   START / RESTART QUIZ
+   ========================================= */
+
+function startQuiz(){
+
+  /*
+    اصل questions کو copy کیا جا رہا ہے۔
+    اس سے اصل question bank محفوظ رہے گا۔
+  */
+
+  quizQuestions = questions.map(function(q){
+
+    return {
+
+      subject:q.subject,
+
+      q:q.q,
+
+      options:[...q.options],
+
+      answer:q.answer
+
+    };
+
+  });
+
+
+  /* Questions random */
+
+  shuffleArray(quizQuestions);
+
+
+  /*
+    ہر سوال کے options بھی random
+    ہوں گے اور صحیح جواب بھی ساتھ move ہوگا۔
+  */
+
+  quizQuestions.forEach(function(q){
+
+    const correctAnswer =
+      q.options[q.answer];
+
+    shuffleArray(q.options);
+
+    q.answer =
+      q.options.indexOf(correctAnswer);
+
+  });
+
+
+  currentQuestion = 0;
+
+  score = 0;
+
+  answered = false;
+
+
+  document.getElementById("finalScreen").style.display =
+    "none";
+
+  document.getElementById("quizCard").style.display =
+    "block";
+
+
+  showQuestion();
+
+}
+
+
+/* =========================================
    SHOW QUESTION
-   ========================= */
+   ========================================= */
 
 function showQuestion(){
 
   answered = false;
 
-  const q = questions[currentQuestion];
+  const q = quizQuestions[currentQuestion];
+
 
   document.getElementById("questionNumber").textContent =
-    (currentQuestion + 1) + " / " + questions.length;
+    (currentQuestion + 1) + " / " + quizQuestions.length;
 
-  document.getElementById("score").textContent = score;
 
-  document.getElementById("subject").textContent = q.subject;
+  document.getElementById("score").textContent =
+    score;
 
-  document.getElementById("question").textContent = q.q;
 
-  document.getElementById("result").textContent = "";
+  document.getElementById("subject").textContent =
+    q.subject;
 
-  document.getElementById("nextBtn").style.display = "none";
+
+  document.getElementById("question").textContent =
+    q.q;
+
+
+  document.getElementById("result").textContent =
+    "";
+
+
+  document.getElementById("nextBtn").style.display =
+    "none";
 
 
   const progress =
-    ((currentQuestion + 1) / questions.length) * 100;
+    ((currentQuestion + 1) / quizQuestions.length) * 100;
+
 
   document.getElementById("progressFill").style.width =
     progress + "%";
+
 
   document.getElementById("progressPercent").textContent =
     Math.round(progress) + "%";
@@ -629,22 +1223,30 @@ function showQuestion(){
   const optionsContainer =
     document.getElementById("options");
 
+
   optionsContainer.innerHTML = "";
 
 
   q.options.forEach(function(optionText,index){
 
-    const button = document.createElement("button");
+    const button =
+      document.createElement("button");
+
 
     button.className = "option";
 
-    button.textContent = optionText;
 
-    button.onclick = function(){
+    button.textContent =
+      optionText;
 
-      checkAnswer(index,button);
 
-    };
+    button.onclick =
+      function(){
+
+        checkAnswer(index,button);
+
+      };
+
 
     optionsContainer.appendChild(button);
 
@@ -653,9 +1255,9 @@ function showQuestion(){
 }
 
 
-/* =========================
+/* =========================================
    CHECK ANSWER
-   ========================= */
+   ========================================= */
 
 function checkAnswer(selected,clickedButton){
 
@@ -663,7 +1265,10 @@ function checkAnswer(selected,clickedButton){
 
   answered = true;
 
-  const q = questions[currentQuestion];
+
+  const q =
+    quizQuestions[currentQuestion];
+
 
   const buttons =
     document.querySelectorAll(".option");
@@ -680,13 +1285,17 @@ function checkAnswer(selected,clickedButton){
 
     score += 10;
 
+
     clickedButton.classList.add("correct");
+
 
     document.getElementById("score").textContent =
       score;
 
+
     document.getElementById("result").textContent =
       "🎉 Excellent! Correct Answer! +10 ⭐";
+
 
     document.getElementById("result").style.color =
       "#16a34a";
@@ -697,11 +1306,14 @@ function checkAnswer(selected,clickedButton){
 
     clickedButton.classList.add("wrong");
 
+
     buttons[q.answer].classList.add("correct");
+
 
     document.getElementById("result").textContent =
       "😊 Nice Try! Correct answer: " +
       q.options[q.answer];
+
 
     document.getElementById("result").style.color =
       "#dc2626";
@@ -715,15 +1327,16 @@ function checkAnswer(selected,clickedButton){
 }
 
 
-/* =========================
+/* =========================================
    NEXT QUESTION
-   ========================= */
+   ========================================= */
 
 function nextQuestion(){
 
   currentQuestion++;
 
-  if(currentQuestion >= questions.length){
+
+  if(currentQuestion >= quizQuestions.length){
 
     showFinalScreen();
 
@@ -733,9 +1346,13 @@ function nextQuestion(){
 
     showQuestion();
 
+
     window.scrollTo({
+
       top:0,
+
       behavior:"smooth"
+
     });
 
   }
@@ -743,51 +1360,60 @@ function nextQuestion(){
 }
 
 
-/* =========================
+/* =========================================
    FINAL SCREEN
-   ========================= */
+   ========================================= */
 
 function showFinalScreen(){
 
   document.getElementById("quizCard").style.display =
     "none";
 
+
   document.getElementById("finalScreen").style.display =
     "block";
 
+
   document.getElementById("finalScore").textContent =
-    "Your Score: " + score + " / 250";
+    "Your Score: " + score + " / " +
+    (quizQuestions.length * 10);
 
 
   let message = "";
 
-  if(score >= 230){
 
-    message = "🏆 Amazing! You are a Quiz Champion!";
+  if(score >= 900){
 
-  }
-
-  else if(score >= 190){
-
-    message = "🌟 Excellent Job! Keep it up!";
+    message =
+      "🏆 Amazing! You are a Quiz Champion!";
 
   }
 
-  else if(score >= 140){
+  else if(score >= 750){
 
-    message = "👏 Great Work! You are learning well!";
+    message =
+      "🌟 Excellent Job! Keep it up!";
 
   }
 
-  else if(score >= 100){
+  else if(score >= 600){
 
-    message = "😊 Good Try! Keep practicing!";
+    message =
+      "👏 Great Work! You are learning well!";
+
+  }
+
+  else if(score >= 400){
+
+    message =
+      "😊 Good Try! Keep practicing!";
 
   }
 
   else{
 
-    message = "💪 Don't Give Up! Try Again!";
+    message =
+      "💪 Don't Give Up! Try Again!";
 
   }
 
@@ -798,30 +1424,11 @@ function showFinalScreen(){
 }
 
 
-/* =========================
-   RESTART
-   ========================= */
+/* =========================================
+   START QUIZ
+   ========================================= */
 
-function restartQuiz(){
-
-  currentQuestion = 0;
-
-  score = 0;
-
-  document.getElementById("finalScreen").style.display =
-    "none";
-
-  document.getElementById("quizCard").style.display =
-    "block";
-
-  showQuestion();
-
-}
-
-
-/* START QUIZ */
-
-showQuestion();
+startQuiz();
 
 </script>
 
