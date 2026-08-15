@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>GameArena - Play, Learn & Challenge</title>
+<title>GameArena - Yesterday's Position Holders</title>
 
 <style>
 
@@ -19,340 +19,162 @@ body{
   min-height:100vh;
   color:white;
   background:
-    radial-gradient(circle at top,#5b21b6,#17102f 42%,#05030d);
+    radial-gradient(circle at top,#5b21b6,#17102f 45%,#05030d);
 }
 
 .container{
   width:100%;
-  max-width:700px;
+  max-width:650px;
   margin:auto;
-  padding:18px;
+  padding:20px;
 }
 
-/* HEADER */
+/* Header */
 
 .header{
   text-align:center;
-  padding:30px 10px 25px;
+  padding:25px 10px;
 }
 
 .logo{
-  font-size:48px;
-  font-weight:900;
-  letter-spacing:1px;
-  text-shadow:0 0 25px #a78bfa;
-}
-
-.tagline{
-  margin-top:10px;
-  font-size:19px;
-  color:#ddd6fe;
-  font-weight:bold;
-}
-
-.welcome{
-  margin-top:15px;
-  font-size:15px;
-  color:#c4b5fd;
-  line-height:1.6;
-}
-
-/* HERO BUTTON */
-
-.hero-button{
-  display:inline-block;
-  margin-top:18px;
-  padding:14px 30px;
-  border-radius:30px;
-  background:linear-gradient(135deg,#8b5cf6,#6d28d9);
-  color:white;
-  text-decoration:none;
-  font-size:18px;
-  font-weight:bold;
-  box-shadow:0 8px 25px rgba(124,58,237,.45);
-}
-
-/* SECTION */
-
-.section-title{
-  font-size:27px;
-  margin:28px 0 16px;
-  text-align:center;
-}
-
-/* GAME CARDS */
-
-.games{
-  display:flex;
-  flex-direction:column;
-  gap:16px;
-}
-
-.game-card{
-  display:block;
-  text-decoration:none;
-  color:white;
-  padding:23px 18px;
-  border-radius:24px;
-  background:rgba(255,255,255,0.09);
-  border:1px solid rgba(255,255,255,0.18);
-  box-shadow:0 10px 30px rgba(0,0,0,0.35);
-  transition:.25s;
-}
-
-.game-card:hover{
-  transform:translateY(-4px);
-  background:rgba(139,92,246,.18);
-}
-
-.game-card:active{
-  transform:scale(.97);
-}
-
-.game-icon{
-  font-size:44px;
-  margin-bottom:8px;
-}
-
-.game-name{
-  font-size:24px;
-  font-weight:bold;
-}
-
-.game-text{
-  margin-top:7px;
-  font-size:15px;
-  color:#ddd6fe;
-  line-height:1.5;
-}
-
-.play{
-  display:inline-block;
-  margin-top:14px;
-  padding:10px 22px;
-  border-radius:30px;
-  background:#7c3aed;
-  font-size:16px;
-  font-weight:bold;
-}
-
-/* DAILY CHALLENGE */
-
-.challenge{
-  margin-top:25px;
-  padding:24px 18px;
-  border-radius:24px;
-  background:linear-gradient(
-    135deg,
-    rgba(245,158,11,.20),
-    rgba(124,58,237,.18)
-  );
-  border:1px solid rgba(255,255,255,.18);
-  text-align:center;
-  box-shadow:0 10px 30px rgba(0,0,0,.3);
-}
-
-.challenge-icon{
-  font-size:45px;
-}
-
-.challenge h3{
-  font-size:23px;
-  margin:8px 0;
-}
-
-.challenge p{
-  color:#ddd6fe;
-  line-height:1.5;
-}
-
-.challenge-button{
-  display:inline-block;
-  margin-top:15px;
-  padding:11px 25px;
-  border-radius:25px;
-  background:#f59e0b;
-  color:#111827;
-  text-decoration:none;
-  font-weight:bold;
-}
-
-/* BOOKS */
-
-.books{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:14px;
-}
-
-.book-card{
-  padding:20px 12px;
-  border-radius:20px;
-  background:rgba(255,255,255,.09);
-  border:1px solid rgba(255,255,255,.15);
-  text-align:center;
-  box-shadow:0 8px 25px rgba(0,0,0,.25);
-}
-
-.book-icon{
   font-size:40px;
+  font-weight:900;
+  text-shadow:0 0 20px #a78bfa;
 }
 
-.book-title{
-  margin-top:8px;
-  font-size:18px;
-  font-weight:bold;
-}
-
-.book-text{
-  margin-top:6px;
-  font-size:13px;
-  color:#c4b5fd;
-  line-height:1.4;
-}
-
-.coming{
-  display:inline-block;
+.subtitle{
   margin-top:10px;
-  padding:6px 10px;
-  border-radius:15px;
-  background:rgba(255,255,255,.12);
   color:#ddd6fe;
-  font-size:12px;
-}
-
-/* LEADERBOARD */
-
-.leaderboard{
-  margin-top:10px;
-  padding:20px;
-  border-radius:24px;
-  background:rgba(255,255,255,.08);
-  border:1px solid rgba(255,255,255,.15);
-  box-shadow:0 10px 30px rgba(0,0,0,.3);
-}
-
-.rank{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:10px;
-  margin:10px 0;
-  padding:15px;
-  border-radius:15px;
-  background:rgba(255,255,255,.08);
   font-size:17px;
   font-weight:bold;
 }
 
-.points{
-  color:#facc15;
-  white-space:nowrap;
+/* Title */
+
+.page-title{
+  text-align:center;
+  font-size:28px;
+  margin:20px 0 8px;
 }
 
-.rank:first-child{
-  background:rgba(250,204,21,.12);
+.date{
+  text-align:center;
+  color:#c4b5fd;
+  margin-bottom:25px;
 }
 
-/* UPDATES */
+/* Position Cards */
 
-.updates{
+.position-card{
+  position:relative;
+  margin-bottom:18px;
+  padding:22px 18px;
+  border-radius:25px;
+  background:rgba(255,255,255,.09);
+  border:1px solid rgba(255,255,255,.18);
+  box-shadow:0 10px 30px rgba(0,0,0,.35);
+}
+
+.position-card.first{
+  border:2px solid #facc15;
+  background:rgba(250,204,21,.10);
+}
+
+.position-card.second{
+  border:2px solid #cbd5e1;
+}
+
+.position-card.third{
+  border:2px solid #d97706;
+}
+
+/* Medal */
+
+.medal{
+  text-align:center;
+  font-size:55px;
+}
+
+.position{
+  text-align:center;
+  font-size:22px;
+  font-weight:900;
+  margin-top:5px;
+}
+
+/* Player */
+
+.player-name{
+  text-align:center;
+  font-size:25px;
+  font-weight:900;
+  margin-top:12px;
+  color:#fff;
+}
+
+.info{
+  margin-top:15px;
   display:flex;
   flex-direction:column;
+  gap:9px;
+}
+
+.info-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
   gap:10px;
-}
-
-.update{
-  padding:15px;
-  border-radius:16px;
+  padding:11px 13px;
+  border-radius:13px;
   background:rgba(255,255,255,.08);
-  border-left:4px solid #8b5cf6;
-  text-align:left;
 }
 
-.update strong{
-  display:block;
-  margin-bottom:5px;
-}
-
-.update span{
+.label{
   color:#c4b5fd;
-  font-size:14px;
 }
 
-/* WHY GAMEARENA */
-
-.features{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px;
-}
-
-.feature{
-  padding:18px 10px;
-  border-radius:18px;
-  background:rgba(255,255,255,.08);
-  text-align:center;
-}
-
-.feature-icon{
-  font-size:32px;
-}
-
-.feature-title{
-  margin-top:7px;
+.value{
   font-weight:bold;
-  font-size:15px;
+  text-align:right;
 }
 
-/* FOOTER */
+.score{
+  margin-top:15px;
+  text-align:center;
+  font-size:23px;
+  font-weight:900;
+  color:#facc15;
+}
+
+/* Back Button */
+
+.back-btn{
+  display:block;
+  text-align:center;
+  margin-top:25px;
+  padding:15px;
+  border-radius:18px;
+  background:#7c3aed;
+  color:white;
+  text-decoration:none;
+  font-size:18px;
+  font-weight:bold;
+  box-shadow:0 6px 20px rgba(124,58,237,.4);
+}
+
+.back-btn:active{
+  transform:scale(.97);
+}
+
+/* Footer */
 
 .footer{
-  margin-top:35px;
-  padding:25px 10px;
+  text-align:center;
+  margin-top:30px;
+  padding:20px 10px;
   color:#a78bfa;
   font-size:14px;
   line-height:1.7;
-  text-align:center;
-}
-
-.footer strong{
-  color:#c4b5fd;
-}
-
-/* MOBILE */
-
-@media(max-width:500px){
-
-  .container{
-    padding:12px;
-  }
-
-  .logo{
-    font-size:38px;
-  }
-
-  .tagline{
-    font-size:17px;
-  }
-
-  .section-title{
-    font-size:24px;
-  }
-
-  .books,
-  .features{
-    grid-template-columns:1fr 1fr;
-  }
-
-  .game-name{
-    font-size:22px;
-  }
-
-  .rank{
-    font-size:15px;
-  }
-
 }
 
 </style>
@@ -362,349 +184,161 @@ body{
 
 <div class="container">
 
-<!-- HEADER -->
+  <!-- Header -->
 
-<header class="header">
+  <div class="header">
 
-  <div class="logo">🎮 GameArena</div>
+    <div class="logo">
+      🎮 GameArena
+    </div>
 
-  <div class="tagline">
-    Play • Learn • Challenge • Win
+    <div class="subtitle">
+      Play • Learn • Challenge • Win
+    </div>
+
   </div>
 
-  <div class="welcome">
-    Welcome to GameArena! 🎉<br>
-    Play fun games, test your knowledge and challenge yourself.
+
+  <!-- Page Title -->
+
+  <div class="page-title">
+    🏆 Yesterday's Position Holders
   </div>
 
-  <a href="Quiz.html" class="hero-button">
-    🚀 Start Playing
+  <div class="date">
+    ⭐ Top 3 Players of Yesterday
+  </div>
+
+
+  <!-- 1st Position -->
+
+  <div class="position-card first">
+
+    <div class="medal">
+      🥇
+    </div>
+
+    <div class="position">
+      1st Position
+    </div>
+
+    <div class="player-name">
+      Muhammad Ali
+    </div>
+
+    <div class="info">
+
+      <div class="info-row">
+        <span class="label">🏙️ City</span>
+        <span class="value">Karachi</span>
+      </div>
+
+      <div class="info-row">
+        <span class="label">🏫 School</span>
+        <span class="value">ABC School</span>
+      </div>
+
+    </div>
+
+    <div class="score">
+      ⭐ 950 Points
+    </div>
+
+  </div>
+
+
+  <!-- 2nd Position -->
+
+  <div class="position-card second">
+
+    <div class="medal">
+      🥈
+    </div>
+
+    <div class="position">
+      2nd Position
+    </div>
+
+    <div class="player-name">
+      Ahmed Khan
+    </div>
+
+    <div class="info">
+
+      <div class="info-row">
+        <span class="label">🏙️ City</span>
+        <span class="value">Lahore</span>
+      </div>
+
+      <div class="info-row">
+        <span class="label">🏫 School</span>
+        <span class="value">City School</span>
+      </div>
+
+    </div>
+
+    <div class="score">
+      ⭐ 920 Points
+    </div>
+
+  </div>
+
+
+  <!-- 3rd Position -->
+
+  <div class="position-card third">
+
+    <div class="medal">
+      🥉
+    </div>
+
+    <div class="position">
+      3rd Position
+    </div>
+
+    <div class="player-name">
+      Usman Ali
+    </div>
+
+    <div class="info">
+
+      <div class="info-row">
+        <span class="label">🏙️ City</span>
+        <span class="value">Islamabad</span>
+      </div>
+
+      <div class="info-row">
+        <span class="label">🏫 School</span>
+        <span class="value">The Educators</span>
+      </div>
+
+    </div>
+
+    <div class="score">
+      ⭐ 890 Points
+    </div>
+
+  </div>
+
+
+  <!-- Back -->
+
+  <a href="index.html" class="back-btn">
+    🏠 Back to GameArena
   </a>
 
-</header>
 
+  <!-- Footer -->
 
-<!-- GAMES -->
+  <div class="footer">
 
-<h2 class="section-title">
-  🎮 Game Zone
-</h2>
+    🎮 GameArena © 2026
 
-<div class="games">
+    <br>
 
-  <a class="game-card" href="game.html">
-
-    <div class="game-icon">🎯</div>
-
-    <div class="game-name">
-      Lucky Number
-    </div>
-
-    <div class="game-text">
-      Test your luck and try to find the correct number!
-    </div>
-
-    <div class="play">
-      ▶ Play Now
-    </div>
-
-  </a>
-
-
-  <a class="game-card" href="Puzzle.html">
-
-    <div class="game-icon">🧩</div>
-
-    <div class="game-name">
-      Puzzle Game
-    </div>
-
-    <div class="game-text">
-      Challenge your brain and solve interesting puzzles!
-    </div>
-
-    <div class="play">
-      ▶ Play Now
-    </div>
-
-  </a>
-
-
-  <a class="game-card" href="Quiz.html">
-
-    <div class="game-icon">🧠</div>
-
-    <div class="game-name">
-      100 Questions Quiz
-    </div>
-
-    <div class="game-text">
-      Pakistan Studies, Islamiyat, Social Studies and General Knowledge.
-    </div>
-
-    <div class="play">
-      ▶ Play Quiz
-    </div>
-
-  </a>
-
-</div>
-
-
-<!-- DAILY CHALLENGE -->
-
-<h2 class="section-title">
-  🔥 Daily Challenge
-</h2>
-
-<div class="challenge">
-
-  <div class="challenge-icon">
-    🏆
-  </div>
-
-  <h3>
-    Today's Quiz Challenge
-  </h3>
-
-  <p>
-    Play the 100 Questions Quiz and try to reach the top position!
-  </p>
-
-  <a href="Quiz.html" class="challenge-button">
-    🎮 Start Challenge
-  </a>
-
-</div>
-
-
-<!-- DAILY POSITION HOLDERS -->
-
-<h2 class="section-title">
-  🏆 Daily Position Holders
-</h2>
-
-<div class="leaderboard">
-
-  <div class="rank">
-    <span>🥇 1st — Player</span>
-    <span class="points">100 ⭐</span>
-  </div>
-
-  <div class="rank">
-    <span>🥈 2nd — Player</span>
-    <span class="points">80 ⭐</span>
-  </div>
-
-  <div class="rank">
-    <span>🥉 3rd — Player</span>
-    <span class="points">60 ⭐</span>
-  </div>
-
-  <div class="rank">
-    <span>4th — Player</span>
-    <span class="points">40 ⭐</span>
-  </div>
-
-  <div class="rank">
-    <span>5th — Player</span>
-    <span class="points">20 ⭐</span>
-  </div>
-
-</div>
-
-
-<!-- BOOKS -->
-
-<h2 class="section-title">
-  📚 Books & Learning
-</h2>
-
-<div class="books">
-
-  <div class="book-card">
-
-    <div class="book-icon">
-      📖
-    </div>
-
-    <div class="book-title">
-      Islamic Books
-    </div>
-
-    <div class="book-text">
-      Learn about Islamic knowledge and important topics.
-    </div>
-
-    <div class="coming">
-      Coming Soon
-    </div>
+    🏆 Keep Playing • Keep Learning • Reach the Top!
 
   </div>
-
-
-  <div class="book-card">
-
-    <div class="book-icon">
-      🇵🇰
-    </div>
-
-    <div class="book-title">
-      Pakistan Studies
-    </div>
-
-    <div class="book-text">
-      Learn about Pakistan's history and important personalities.
-    </div>
-
-    <div class="coming">
-      Coming Soon
-    </div>
-
-  </div>
-
-
-  <div class="book-card">
-
-    <div class="book-icon">
-      📘
-    </div>
-
-    <div class="book-title">
-      Kids Learning
-    </div>
-
-    <div class="book-text">
-      Easy educational content for young learners.
-    </div>
-
-    <div class="coming">
-      Coming Soon
-    </div>
-
-  </div>
-
-
-  <div class="book-card">
-
-    <div class="book-icon">
-      🌙
-    </div>
-
-    <div class="book-title">
-      Rabi-ul-Awwal
-    </div>
-
-    <div class="book-text">
-      Special Islamic content and beautiful learning material.
-    </div>
-
-    <div class="coming">
-      Coming Soon
-    </div>
-
-  </div>
-
-</div>
-
-
-<!-- LATEST UPDATES -->
-
-<h2 class="section-title">
-  🆕 Latest Updates
-</h2>
-
-<div class="updates">
-
-  <div class="update">
-
-    <strong>
-      🧠 New 100 Questions Quiz
-    </strong>
-
-    <span>
-      Test your knowledge with 100 random questions.
-    </span>
-
-  </div>
-
-
-  <div class="update">
-
-    <strong>
-      🏆 Daily Ranking
-    </strong>
-
-    <span>
-      Compete with other players and aim for the top position.
-    </span>
-
-  </div>
-
-
-  <div class="update">
-
-    <strong>
-      📚 Books & Learning
-    </strong>
-
-    <span>
-      New educational and Islamic content will be added soon.
-    </span>
-
-  </div>
-
-</div>
-
-
-<!-- WHY GAMEARENA -->
-
-<h2 class="section-title">
-  🌟 Why GameArena?
-</h2>
-
-<div class="features">
-
-  <div class="feature">
-    <div class="feature-icon">🎮</div>
-    <div class="feature-title">Fun Games</div>
-  </div>
-
-  <div class="feature">
-    <div class="feature-icon">🧠</div>
-    <div class="feature-title">Learn While Playing</div>
-  </div>
-
-  <div class="feature">
-    <div class="feature-icon">🏆</div>
-    <div class="feature-title">Daily Challenge</div>
-  </div>
-
-  <div class="feature">
-    <div class="feature-icon">📚</div>
-    <div class="feature-title">Free Learning</div>
-  </div>
-
-</div>
-
-
-<!-- FOOTER -->
-
-<div class="footer">
-
-  🎮 <strong>GameArena</strong> © 2026
-
-  <br>
-
-  Play • Learn • Challenge • Have Fun
-
-  <br>
-
-  <span>
-    More Games & Books Coming Soon 🚀
-  </span>
-
-</div>
 
 </div>
 
