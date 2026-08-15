@@ -1,346 +1,298 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>GameArena - Yesterday's Position Holders</title>
+  <title>GameArena - Free Online Games</title>
 
-<style>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #141e30, #243b55);
+      color: white;
+      min-height: 100vh;
+      text-align: center;
+    }
 
-body{
-  font-family:Arial,sans-serif;
-  min-height:100vh;
-  color:white;
-  background:
-    radial-gradient(circle at top,#5b21b6,#17102f 45%,#05030d);
-}
+    header {
+      padding: 30px 15px 20px;
+    }
 
-.container{
-  width:100%;
-  max-width:650px;
-  margin:auto;
-  padding:20px;
-}
+    header h1 {
+      font-size: 42px;
+      margin-bottom: 10px;
+    }
 
-/* Header */
+    header p {
+      font-size: 18px;
+      color: #d8e1ec;
+    }
 
-.header{
-  text-align:center;
-  padding:25px 10px;
-}
+    .nav-buttons {
+      margin: 25px auto;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
 
-.logo{
-  font-size:40px;
-  font-weight:900;
-  text-shadow:0 0 20px #a78bfa;
-}
+    .nav-btn {
+      text-decoration: none;
+      color: white;
+      background: #1976d2;
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      display: inline-block;
+    }
 
-.subtitle{
-  margin-top:10px;
-  color:#ddd6fe;
-  font-size:17px;
-  font-weight:bold;
-}
+    .nav-btn:hover {
+      background: #0d47a1;
+    }
 
-/* Title */
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 20px;
+    }
 
-.page-title{
-  text-align:center;
-  font-size:28px;
-  margin:20px 0 8px;
-}
+    .login-section {
+      max-width: 700px;
+      margin: 10px auto 35px;
+      padding: 25px;
+      background: rgba(255,255,255,0.10);
+      border-radius: 18px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    }
 
-.date{
-  text-align:center;
-  color:#c4b5fd;
-  margin-bottom:25px;
-}
+    .login-section h2 {
+      margin-bottom: 10px;
+      font-size: 28px;
+    }
 
-/* Position Cards */
+    .login-section p {
+      color: #d8e1ec;
+      margin-bottom: 20px;
+    }
 
-.position-card{
-  position:relative;
-  margin-bottom:18px;
-  padding:22px 18px;
-  border-radius:25px;
-  background:rgba(255,255,255,.09);
-  border:1px solid rgba(255,255,255,.18);
-  box-shadow:0 10px 30px rgba(0,0,0,.35);
-}
+    .account-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
 
-.position-card.first{
-  border:2px solid #facc15;
-  background:rgba(250,204,21,.10);
-}
+    .account-btn {
+      text-decoration: none;
+      color: white;
+      padding: 14px 30px;
+      border-radius: 10px;
+      font-weight: bold;
+      font-size: 17px;
+    }
 
-.position-card.second{
-  border:2px solid #cbd5e1;
-}
+    .login {
+      background: #2196f3;
+    }
 
-.position-card.third{
-  border:2px solid #d97706;
-}
+    .register {
+      background: #00c853;
+    }
 
-/* Medal */
+    .login:hover {
+      background: #1565c0;
+    }
 
-.medal{
-  text-align:center;
-  font-size:55px;
-}
+    .register:hover {
+      background: #00a844;
+    }
 
-.position{
-  text-align:center;
-  font-size:22px;
-  font-weight:900;
-  margin-top:5px;
-}
+    .container h2.games-title {
+      font-size: 30px;
+      margin-bottom: 25px;
+    }
 
-/* Player */
+    .games {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
 
-.player-name{
-  text-align:center;
-  font-size:25px;
-  font-weight:900;
-  margin-top:12px;
-  color:#fff;
-}
+    .game-card {
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 18px;
+      padding: 25px 15px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    }
 
-.info{
-  margin-top:15px;
-  display:flex;
-  flex-direction:column;
-  gap:9px;
-}
+    .game-card h3 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
 
-.info-row{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:10px;
-  padding:11px 13px;
-  border-radius:13px;
-  background:rgba(255,255,255,.08);
-}
+    .game-card p {
+      color: #d8e1ec;
+      margin-bottom: 18px;
+    }
 
-.label{
-  color:#c4b5fd;
-}
+    .play-btn {
+      display: inline-block;
+      text-decoration: none;
+      background: #ff9800;
+      color: white;
+      padding: 12px 25px;
+      border-radius: 10px;
+      font-weight: bold;
+    }
 
-.value{
-  font-weight:bold;
-  text-align:right;
-}
+    .play-btn:hover {
+      background: #f57c00;
+    }
 
-.score{
-  margin-top:15px;
-  text-align:center;
-  font-size:23px;
-  font-weight:900;
-  color:#facc15;
-}
+    footer {
+      margin-top: 40px;
+      padding: 20px;
+      background: rgba(0,0,0,0.25);
+      color: #cbd5e1;
+    }
 
-/* Back Button */
+    @media (max-width: 500px) {
+      header h1 {
+        font-size: 34px;
+      }
 
-.back-btn{
-  display:block;
-  text-align:center;
-  margin-top:25px;
-  padding:15px;
-  border-radius:18px;
-  background:#7c3aed;
-  color:white;
-  text-decoration:none;
-  font-size:18px;
-  font-weight:bold;
-  box-shadow:0 6px 20px rgba(124,58,237,.4);
-}
-
-.back-btn:active{
-  transform:scale(.97);
-}
-
-/* Footer */
-
-.footer{
-  text-align:center;
-  margin-top:30px;
-  padding:20px 10px;
-  color:#a78bfa;
-  font-size:14px;
-  line-height:1.7;
-}
-
-</style>
+      .games-title {
+        font-size: 26px !important;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="container">
+  <header>
 
-  <!-- Header -->
+    <h1>🎮 GameArena</h1>
 
-  <div class="header">
+    <p>Welcome to GameArena — Free Online Games</p>
 
-    <div class="logo">
-      🎮 GameArena
+    <div class="nav-buttons">
+
+      <a href="login.html" class="nav-btn">
+        🔐 Login
+      </a>
+
+      <a href="register.html" class="nav-btn">
+        📝 Register
+      </a>
+
+      <a href="position.html" class="nav-btn">
+        🏆 Position Holders
+      </a>
+
     </div>
 
-    <div class="subtitle">
-      Play • Learn • Challenge • Win
-    </div>
-
-  </div>
+  </header>
 
 
-  <!-- Page Title -->
+  <div class="container">
 
-  <div class="page-title">
-    🏆 Yesterday's Position Holders
-  </div>
+    <!-- LOGIN / REGISTRATION SECTION -->
 
-  <div class="date">
-    ⭐ Top 3 Players of Yesterday
-  </div>
+    <div class="login-section">
 
+      <h2>👤 GameArena Account</h2>
 
-  <!-- 1st Position -->
+      <p>
+        Login to your account or create a new account to play games.
+      </p>
 
-  <div class="position-card first">
+      <div class="account-buttons">
 
-    <div class="medal">
-      🥇
-    </div>
+        <a href="login.html" class="account-btn login">
+          🔐 Login
+        </a>
 
-    <div class="position">
-      1st Position
-    </div>
+        <a href="register.html" class="account-btn register">
+          📝 Create Account
+        </a>
 
-    <div class="player-name">
-      Muhammad Ali
-    </div>
-
-    <div class="info">
-
-      <div class="info-row">
-        <span class="label">🏙️ City</span>
-        <span class="value">Karachi</span>
-      </div>
-
-      <div class="info-row">
-        <span class="label">🏫 School</span>
-        <span class="value">ABC School</span>
       </div>
 
     </div>
 
-    <div class="score">
-      ⭐ 950 Points
+
+    <!-- GAMES -->
+
+    <h2 class="games-title">🎯 Choose a Game</h2>
+
+    <div class="games">
+
+      <div class="game-card">
+
+        <h3>🎯 Lucky Number</h3>
+
+        <p>
+          Try your luck and find the winning number!
+        </p>
+
+        <a href="game.html" class="play-btn">
+          ▶ Play Now
+        </a>
+
+      </div>
+
+
+      <div class="game-card">
+
+        <h3>🧩 Puzzle Game</h3>
+
+        <p>
+          Challenge your brain with exciting puzzles.
+        </p>
+
+        <a href="Puzzle.html" class="play-btn">
+          ▶ Play Now
+        </a>
+
+      </div>
+
+
+      <div class="game-card">
+
+        <h3>🧠 Quiz Game</h3>
+
+        <p>
+          Test your knowledge with interesting questions.
+        </p>
+
+        <a href="Quiz.html" class="play-btn">
+          ▶ Play Now
+        </a>
+
+      </div>
+
     </div>
 
   </div>
 
 
-  <!-- 2nd Position -->
+  <footer>
 
-  <div class="position-card second">
+    <p>
+      © 2026 GameArena — All Rights Reserved
+    </p>
 
-    <div class="medal">
-      🥈
-    </div>
-
-    <div class="position">
-      2nd Position
-    </div>
-
-    <div class="player-name">
-      Ahmed Khan
-    </div>
-
-    <div class="info">
-
-      <div class="info-row">
-        <span class="label">🏙️ City</span>
-        <span class="value">Lahore</span>
-      </div>
-
-      <div class="info-row">
-        <span class="label">🏫 School</span>
-        <span class="value">City School</span>
-      </div>
-
-    </div>
-
-    <div class="score">
-      ⭐ 920 Points
-    </div>
-
-  </div>
-
-
-  <!-- 3rd Position -->
-
-  <div class="position-card third">
-
-    <div class="medal">
-      🥉
-    </div>
-
-    <div class="position">
-      3rd Position
-    </div>
-
-    <div class="player-name">
-      Usman Ali
-    </div>
-
-    <div class="info">
-
-      <div class="info-row">
-        <span class="label">🏙️ City</span>
-        <span class="value">Islamabad</span>
-      </div>
-
-      <div class="info-row">
-        <span class="label">🏫 School</span>
-        <span class="value">The Educators</span>
-      </div>
-
-    </div>
-
-    <div class="score">
-      ⭐ 890 Points
-    </div>
-
-  </div>
-
-
-  <!-- Back -->
-
-  <a href="index.html" class="back-btn">
-    🏠 Back to GameArena
-  </a>
-
-
-  <!-- Footer -->
-
-  <div class="footer">
-
-    🎮 GameArena © 2026
-
-    <br>
-
-    🏆 Keep Playing • Keep Learning • Reach the Top!
-
-  </div>
-
-</div>
+  </footer>
 
 </body>
 </html>
