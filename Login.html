@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>GameArena - Login</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:linear-gradient(135deg,#063b20,#0b7a43);
+    color:white;
+    text-align:center;
+}
+
+.box{
+    width:90%;
+    max-width:400px;
+    margin:70px auto;
+    padding:25px;
+    background:white;
+    color:#222;
+    border-radius:20px;
+    box-shadow:0 8px 25px rgba(0,0,0,.3);
+}
+
+input{
+    width:90%;
+    padding:13px;
+    margin:9px 0;
+    border:1px solid #ccc;
+    border-radius:10px;
+    font-size:16px;
+}
+
+button{
+    width:95%;
+    padding:13px;
+    margin-top:12px;
+    border:0;
+    border-radius:10px;
+    background:#087f3e;
+    color:white;
+    font-size:17px;
+    font-weight:bold;
+}
+
+a{
+    color:#087f3e;
+    font-weight:bold;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="box">
+
+<h1>🎮 GameArena</h1>
+
+<h2>🔐 Login</h2>
+
+<input type="text" id="username" placeholder="Username">
+
+<input type="password" id="password" placeholder="Password">
+
+<button onclick="login()">Login</button>
+
+<p id="message"></p>
+
+<p>Don't have an account?</p>
+
+<a href="register.html">Create Account</a>
+
+</div>
+
+<script>
+
+function login(){
+
+    let username =
+    document.getElementById("username").value.trim();
+
+    let password =
+    document.getElementById("password").value;
+
+    let users =
+    JSON.parse(localStorage.getItem("gameArenaUsers")) || [];
+
+    let user = users.find(function(u){
+
+        return u.username === username &&
+               u.password === password;
+
+    });
+
+    if(!user){
+
+        document.getElementById("message").innerHTML =
+        "❌ Wrong username or password.";
+
+        return;
+    }
+
+    localStorage.setItem(
+        "gameArenaLoggedIn",
+        JSON.stringify(user)
+    );
+
+    document.getElementById("message").innerHTML =
+    "✅ Login successful!";
+
+    setTimeout(function(){
+
+        window.location.href = "index.html";
+
+    },800);
+
+}
+
+</script>
+
+</body>
+</html>
